@@ -1,0 +1,130 @@
+/* ============================================================
+   Célébrations Voyages France — Cinematic Immersive
+   Style trailer de luxe, plein écran, parallaxe
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8C97A;
+  --color-gold-dark: #A07830;
+  --color-charcoal: #1A1A1A;
+  --color-cream: #FAF7F2;
+  --color-cream-secondary: #F2EDE4;
+  --color-stone: #E8E0D4;
+  --color-warm: #7A6652;
+  --color-warm-muted: #A89880;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Scrollbar cinématique — fine et discrète */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-charcoal); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 0;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-charcoal);
+  }
+}
+
+@layer components {
+  /* Ligne dorée animée — séparateur cinématique */
+  .cine-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    transform-origin: left;
+  }
+
+  /* Overlay cinéma — vignette sombre sur les bords */
+  .cine-vignette {
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Parallax container */
+  .parallax-bg {
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  /* Split-screen base */
+  .split-screen {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+
+  @media (min-width: 768px) {
+    .split-screen {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Cinematic text shadow for readability on images */
+  .cine-text-shadow {
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5), 0 1px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Counter / scene number */
+  .scene-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 0.625rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .scene-number::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-gold);
+    vertical-align: middle;
+    margin-right: 0.75rem;
+  }
+}
+
+@layer utilities {
+  .focus-gold:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Clip pour effet de révélation */
+  .clip-hidden {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .clip-visible {
+    clip-path: inset(0 0% 0 0);
+  }
+}

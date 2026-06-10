@@ -67,22 +67,82 @@ export function Contact() {
       className="min-h-screen split-screen bg-cream"
       aria-label="Formulaire de contact"
     >
-      {/* Côté gauche — image d'ambiance plein côté */}
+      {/* Côté gauche — image d'ambiance plein côté avec informations */}
       <div className="relative hidden md:block overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1200&q=80"
           alt="Terrasse du domaine au coucher du soleil"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover blur-[3px] scale-105"
         />
-        <div className="absolute inset-0 bg-charcoal/30" />
+        <div className="absolute inset-0 bg-charcoal/50 backdrop-blur-sm" />
+        
+        {/* Informations de contact en surimpression */}
+        <div className="absolute top-20 lg:top-32 left-12 right-12 text-white">
+          <RevealWrapper animation="slide-right">
+            <h3 className="font-display text-3xl lg:text-4xl mb-10 text-white">Le Domaine</h3>
+          </RevealWrapper>
+          
+          <div className="space-y-8">
+            <RevealWrapper animation="slide-right" delay={100}>
+              <div>
+                <p className="font-sans font-bold text-xs tracking-widest uppercase text-gold mb-2">Adresse</p>
+                <p className="font-sans font-light text-lg text-white/90">15 Route des Châteaux<br/>33460 Margaux, France</p>
+                <a 
+                  href="https://maps.google.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 font-sans text-xs tracking-widest uppercase text-white/70 hover:text-gold transition-colors duration-300 focus-gold"
+                >
+                  <span>Ouvrir dans Google Maps</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </RevealWrapper>
+
+            <RevealWrapper animation="slide-right" delay={200}>
+              <div className="h-px w-12 bg-white/20 my-2" />
+            </RevealWrapper>
+
+            <RevealWrapper animation="slide-right" delay={300}>
+              <div>
+                <p className="font-sans font-bold text-xs tracking-widest uppercase text-gold mb-2">Téléphone</p>
+                <a 
+                  href="tel:+33123456789" 
+                  className="font-sans font-light text-lg text-white/90 hover:text-gold transition-colors duration-300 focus-gold"
+                >
+                  +33 1 23 45 67 89
+                </a>
+              </div>
+            </RevealWrapper>
+
+            <RevealWrapper animation="slide-right" delay={400}>
+              <div className="h-px w-12 bg-white/20 my-2" />
+            </RevealWrapper>
+
+            <RevealWrapper animation="slide-right" delay={500}>
+              <div>
+                <p className="font-sans font-bold text-xs tracking-widest uppercase text-gold mb-2">Email</p>
+                <a 
+                  href="mailto:contact@celebrations-voyages.com" 
+                  className="font-sans font-light text-lg text-white/90 hover:text-gold transition-colors duration-300 focus-gold"
+                >
+                  contact@celebrations-voyages.com
+                </a>
+              </div>
+            </RevealWrapper>
+          </div>
+        </div>
+
         {/* Citation superposée */}
-        <div className="absolute bottom-16 left-12 right-12">
-          <p className="font-display italic text-white text-2xl lg:text-3xl leading-snug cine-text-shadow">
-            "Chaque détail compte,
-            <br />
-            chaque moment est unique."
-          </p>
-          <div className="cine-line w-12 mt-6" />
+        <div className="absolute bottom-12 left-12 right-12">
+          <RevealWrapper animation="fade-up" delay={600}>
+            <div className="cine-line w-12 mb-6 opacity-50 bg-gold/50" />
+            <p className="font-display italic text-white/80 text-xl lg:text-2xl leading-snug cine-text-shadow">
+              "Chaque détail compte,
+              <br />
+              chaque moment est unique."
+            </p>
+          </RevealWrapper>
         </div>
       </div>
 

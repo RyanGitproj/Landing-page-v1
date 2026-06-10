@@ -20,7 +20,8 @@ export function Navbar() {
   };
 
   return (
-    <nav
+    <>
+      <nav
       role="navigation"
       aria-label="Navigation principale"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
@@ -86,10 +87,11 @@ export function Navbar() {
           </button>
         </div>
       </div>
+      </nav>
 
       {/* Menu mobile — plein écran cinématique */}
       <div
-        className={`md:hidden fixed inset-0 top-0 bg-charcoal/98 backdrop-blur-xl transition-all duration-700 flex flex-col items-center justify-center ${
+        className={`md:hidden fixed inset-0 z-[60] bg-charcoal/98 backdrop-blur-xl transition-all duration-700 flex flex-col items-center justify-center ${
           isMobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
@@ -129,6 +131,6 @@ export function Navbar() {
           </Button>
         </div>
       </div>
-    </nav>
+    </>
   );
 }

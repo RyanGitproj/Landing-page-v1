@@ -11,7 +11,7 @@ export function Footer() {
 
   return (
     <footer
-      className="bg-charcoal border-t border-white/5"
+      className="bg-navy border-t border-white/5"
       role="contentinfo"
       aria-label="Pied de page"
     >

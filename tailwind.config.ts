@@ -14,6 +14,7 @@ const config: Config = {
           light: '#E8C97A',
           dark: '#A07830',
         },
+        navy: '#0B1528',
         charcoal: '#1A1A1A',
         cream: {
           DEFAULT: '#FAF7F2',

@@ -11,7 +11,7 @@
   --color-gold: #C9A84C;
   --color-gold-light: #E8C97A;
   --color-gold-dark: #A07830;
-  --color-charcoal: #1A1A1A;
+  --color-navy: #1A1A1A;
   --color-cream: #FAF7F2;
   --color-cream-secondary: #F2EDE4;
   --color-stone: #E8E0D4;
@@ -43,7 +43,7 @@
 
   /* Scrollbar cinématique — fine et discrète */
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--color-charcoal); }
+  ::-webkit-scrollbar-track { background: var(--color-navy); }
   ::-webkit-scrollbar-thumb {
     background: var(--color-gold);
     border-radius: 0;
@@ -51,7 +51,7 @@
 
   ::selection {
     background-color: var(--color-gold);
-    color: var(--color-charcoal);
+    color: var(--color-navy);
   }
 }
 

@@ -87,7 +87,7 @@ export function Advantages() {
                 </div>
 
                 {/* Titre */}
-                <h3 className="font-display font-bold text-charcoal text-xl md:text-2xl mb-3 tracking-tight">
+                <h3 className="font-display font-bold text-navy text-xl md:text-2xl mb-3 tracking-tight">
                   {advantage.title}
                 </h3>
 

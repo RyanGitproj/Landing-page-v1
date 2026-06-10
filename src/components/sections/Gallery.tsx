@@ -37,7 +37,7 @@ export function Gallery() {
   return (
     <section
       id="galerie"
-      className="bg-charcoal py-24 md:py-36"
+      className="bg-navy py-24 md:py-36"
       aria-label="Galerie photos du domaine"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -86,7 +86,7 @@ export function Gallery() {
                     loading="lazy"
                   />
                   {/* Overlay subtil au hover — pas d'icône, juste un fondu */}
-                  <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-all duration-500" />
                   {/* Texte alt visible au hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <p className="font-sans font-light text-white/80 text-xs tracking-wider">

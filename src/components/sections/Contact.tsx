@@ -59,7 +59,7 @@ export function Contact() {
 
   // Inputs minimalistes — seulement une ligne en bas, pas de bordure complète
   const inputClasses =
-    'w-full bg-transparent border-0 border-b border-stone/40 px-0 py-4 text-charcoal font-sans font-light text-sm placeholder:text-charcoal/60 outline-none transition-all duration-300 focus:border-gold rounded-none';
+    'w-full bg-transparent border-0 border-b border-stone/40 px-0 py-4 text-navy font-sans font-light text-sm placeholder:text-navy/60 outline-none transition-all duration-300 focus:border-gold rounded-none';
 
   return (
     <section
@@ -74,7 +74,7 @@ export function Contact() {
           alt="Terrasse du domaine au coucher du soleil"
           className="w-full h-full object-cover blur-[3px] scale-105"
         />
-        <div className="absolute inset-0 bg-charcoal/50 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-navy/50 backdrop-blur-sm" />
         
         {/* Informations de contact en surimpression */}
         <div className="absolute top-20 lg:top-32 left-12 right-12 text-white">
@@ -162,7 +162,7 @@ export function Contact() {
             {/* Message de succès */}
             {formState.status === 'success' && (
               <div className="border border-gold/30 px-6 py-5 mb-8">
-                <p className="font-display font-bold text-charcoal text-lg mb-1">
+                <p className="font-display font-bold text-navy text-lg mb-1">
                   Demande envoyée
                 </p>
                 <p className="font-sans font-light text-warm text-sm">
@@ -229,7 +229,7 @@ export function Contact() {
                     value={formData.eventType}
                     onChange={handleChange}
                     className={`${inputClasses} ${
-                      formData.eventType === '' ? 'text-charcoal/60' : ''
+                      formData.eventType === '' ? 'text-navy/60' : ''
                     }`}
                   >
                     <option value="">Type d'événement</option>

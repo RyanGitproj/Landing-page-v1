@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-charcoal pt-32"
+      className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-navy pt-32"
       aria-label="Section héro — Présentation du domaine"
     >
       {/* Image de fond avec Ken Burns */}
@@ -25,9 +25,9 @@ export function Hero() {
         />
         {/* Vignette cinématique + gradient bas */}
         <div className="absolute inset-0 cine-vignette" />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
         {/* Bande noire cinématique en haut — effet letterbox subtil */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-charcoal/80 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-navy/80 to-transparent" />
       </div>
 
       {/* Contenu principal — en bas de l'écran, comme un titre de film */}
@@ -57,7 +57,7 @@ export function Hero() {
               <span className="text-gold">⋙</span> À 15MIN D'ICI...
             </p>
             
-            <div className="bg-charcoal/40 backdrop-blur-sm p-6 rounded-lg border border-gold/20 inline-block">
+            <div className="bg-navy/40 backdrop-blur-sm p-6 rounded-lg border border-gold/20 inline-block">
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 font-sans font-bold text-white text-lg md:text-xl tracking-wider">
                 <li className="flex items-center gap-3"><span className="text-gold text-2xl">•</span> ANNIVERSAIRES</li>
                 <li className="flex items-center gap-3"><span className="text-gold text-2xl">•</span> SÉMINAIRES</li>

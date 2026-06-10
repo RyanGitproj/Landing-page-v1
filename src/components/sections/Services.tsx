@@ -11,7 +11,7 @@ export function Services() {
   return (
     <section
       id="evenements"
-      className="bg-charcoal"
+      className="bg-navy"
       aria-label="Nos événements"
     >
       {/* Titre de section — sur fond sombre, centré */}
@@ -48,12 +48,12 @@ export function Services() {
                 loading="lazy"
               />
               {/* Vignette douce */}
-              <div className="absolute inset-0 bg-gradient-to-r from-charcoal/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-navy/20 to-transparent" />
             </RevealWrapper>
 
             {/* Contenu texte — côté opposé */}
             <div
-              className={`flex items-center bg-charcoal px-8 md:px-16 lg:px-24 py-16 md:py-0 ${
+              className={`flex items-center bg-navy px-8 md:px-16 lg:px-24 py-16 md:py-0 ${
                 isReversed ? 'md:order-1' : ''
               }`}
             >

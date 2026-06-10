@@ -26,7 +26,7 @@ export function Navbar() {
       aria-label="Navigation principale"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled
-          ? 'bg-charcoal/95 backdrop-blur-lg border-b border-gold/10'
+          ? 'bg-navy/95 backdrop-blur-lg border-b border-gold/10'
           : 'bg-transparent'
       }`}
     >
@@ -61,7 +61,7 @@ export function Navbar() {
               variant="outline"
               size="sm"
               onClick={() => handleNavClick('#contact')}
-              className="border-gold/40 text-gold hover:bg-gold hover:text-charcoal ml-4"
+              className="border-gold/40 text-gold hover:bg-gold hover:text-navy ml-4"
             >
               Réserver
             </Button>
@@ -91,7 +91,7 @@ export function Navbar() {
 
       {/* Menu mobile — plein écran cinématique */}
       <div
-        className={`md:hidden fixed inset-0 z-[60] bg-charcoal/98 backdrop-blur-xl transition-all duration-700 flex flex-col items-center justify-center ${
+        className={`md:hidden fixed inset-0 z-[60] bg-navy/98 backdrop-blur-xl transition-all duration-700 flex flex-col items-center justify-center ${
           isMobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
@@ -125,7 +125,7 @@ export function Navbar() {
             variant="outline"
             size="lg"
             onClick={() => handleNavClick('#contact')}
-            className="border-gold text-gold hover:bg-gold hover:text-charcoal"
+            className="border-gold text-gold hover:bg-gold hover:text-navy"
           >
             Réserver
           </Button>

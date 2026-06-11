@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
 import { Button } from '../ui/Button';
@@ -21,6 +22,7 @@ const INITIAL_FORM_DATA: ContactFormData = {
 };
 
 export function Contact() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
   const [formState, setFormState] = useState<ContactFormState>({ status: 'idle' });
 
@@ -52,8 +54,9 @@ export function Contact() {
 
     setFormState({ status: 'submitting' });
     setTimeout(() => {
-      setFormState({ status: 'success' });
       setFormData(INITIAL_FORM_DATA);
+      setFormState({ status: 'idle' });
+      navigate('/merci');
     }, 1500);
   };
 
@@ -243,6 +246,15 @@ export function Contact() {
             <p className="font-sans text-[10px] text-warm/60 text-center mt-6 uppercase tracking-wider">
               Vos données sont protégées et ne seront jamais partagées.
             </p>
+
+            <div className="mt-6 pt-6 border-t border-stone/20 text-center">
+              <p className="font-sans text-xs text-warm/50">
+                Vous préférez nous appeler ?
+              </p>
+              <p className="font-sans text-sm text-navy/70 mt-1">
+                Téléphone : <span className="italic text-warm/60">à confirmer</span>
+              </p>
+            </div>
           </div>
         </RevealWrapper>
       </div>

@@ -39,7 +39,7 @@ export function Hero() {
               <span className="text-gold">Domaine des Élégances</span>
             </h1>
             <p className="font-sans font-light text-white/90 text-lg md:text-xl leading-relaxed mb-8 max-w-xl drop-shadow-md mx-auto md:mx-0">
-              Un lieu d'exception privé avec piscine intérieure et grand jardin, pensé pour sublimer votre événement.
+              Un domaine élégant avec piscine intérieure, grand jardin et barnums de réception professionnels pour vos événements privés, familiaux et professionnels.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

@@ -41,6 +41,16 @@ export function Footer() {
             <p className="font-sans text-gold/60 text-sm mt-4">
               célébrations-voyages.fr
             </p>
+
+            <div className="mt-6 pt-6 border-t border-white/5">
+              <p className="font-sans font-light text-white/25 text-xs uppercase tracking-wider mb-2">
+                Téléphone commercial
+              </p>
+              <p className="font-sans text-white/40 text-sm">
+                <span className="italic">à confirmer</span>
+              </p>
+            </div>
+
           </div>
 
           {/* Navigation */}

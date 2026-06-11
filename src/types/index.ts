@@ -10,30 +10,6 @@ export interface NavLink {
   href: string;
 }
 
-/** Service / type d'événement proposé */
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  imageUrl: string;
-}
-
-/** Avantage / argument de vente */
-export interface Advantage {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-}
-
-/** Image de la galerie */
-export interface GalleryImage {
-  id: string;
-  src: string;
-  alt: string;
-}
-
 /** Données du formulaire court de conversion */
 export interface ContactFormData {
   eventType: string;

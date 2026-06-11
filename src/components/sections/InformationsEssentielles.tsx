@@ -20,7 +20,26 @@ const INFOS = [
   },
   {
     label: 'Couchages',
-    value: 'À confirmer',
+    value: (
+      <div className="space-y-4">
+        <div>
+          <p className="font-medium text-white mb-1">Résidence principale</p>
+          <ul className="list-disc list-outside ml-4 space-y-1">
+            <li>Chambre du RDC : un lit double et un canapé-lit (4 personnes)</li>
+            <li>Chambre à l’étage 1 : un lit double et un canapé (4 personnes)</li>
+            <li>Chambre à l’étage 2 : un lit double et un canapé-lit (4 personnes)</li>
+          </ul>
+        </div>
+        <div>
+          <p className="font-medium text-white mb-1">Dépendances</p>
+          <ul className="list-disc list-outside ml-4 space-y-1">
+            <li>Dépendance 1 : un canapé-lit et un lit double (4 personnes)</li>
+            <li>Dépendance 2 : un canapé-lit, un lit double, deux lits simples (6 personnes)</li>
+          </ul>
+        </div>
+        <p className="font-semibold text-gold mt-2">Capacité totale : 22 couchages</p>
+      </div>
+    ),
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 4v16"></path>

@@ -6,18 +6,18 @@ import { EVENT_TYPE_OPTIONS } from '../../constants';
 import type { ContactFormData, ContactFormState } from '../../types';
 
 // ============================================================
-// Contact cinématique — split-screen : image + formulaire
-// Design épuré, inputs minimalistes façon cinéma
+// Formulaire Court de Conversion — `#disponibilites`
+// Limité à 5 champs pour maximiser le taux de conversion
 // ============================================================
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const INITIAL_FORM_DATA: ContactFormData = {
-  name: '',
-  email: '',
-  phone: '',
   eventType: '',
-  message: '',
+  eventDate: '',
+  guests: '',
+  phone: '',
+  email: '',
 };
 
 export function Contact() {
@@ -25,7 +25,7 @@ export function Contact() {
   const [formState, setFormState] = useState<ContactFormState>({ status: 'idle' });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -34,10 +34,10 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    if (!formData.eventType || !formData.email.trim() || !formData.phone.trim()) {
       setFormState({
         status: 'error',
-        error: 'Veuillez remplir tous les champs obligatoires.',
+        error: 'Veuillez remplir les champs obligatoires (Type, Téléphone, Email).',
       });
       return;
     }
@@ -57,201 +57,173 @@ export function Contact() {
     }, 1500);
   };
 
-  // Inputs minimalistes — seulement une ligne en bas, pas de bordure complète
   const inputClasses =
     'w-full bg-transparent border-0 border-b border-stone/40 px-0 py-4 text-navy font-sans font-light text-sm placeholder:text-navy/60 outline-none transition-all duration-300 focus:border-gold rounded-none';
 
   return (
     <section
-      id="contact"
-      className="min-h-screen split-screen bg-cream"
-      aria-label="Formulaire de contact"
+      id="disponibilites"
+      className="bg-cream py-24 md:py-32 px-6 lg:px-12 relative overflow-hidden"
+      aria-label="Vérifier les disponibilités"
     >
-      {/* Côté gauche — image d'ambiance plein côté avec informations */}
-      <div className="relative hidden md:block overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1200&q=80"
-          alt="Terrasse du domaine au coucher du soleil"
-          className="w-full h-full object-cover blur-[3px] scale-105"
-        />
-        <div className="absolute inset-0 bg-navy/50 backdrop-blur-sm" />
-        
-        {/* Informations de contact en surimpression */}
-        <div className="absolute top-20 lg:top-32 left-12 right-12 text-white">
-          <RevealWrapper animation="slide-right">
-            <h3 className="font-display text-3xl lg:text-4xl mb-10 text-white">Le Domaine</h3>
-          </RevealWrapper>
-          
-          <div className="space-y-8">
-            <RevealWrapper animation="slide-right" delay={100}>
-              <div>
-                <p className="font-sans font-bold text-xs tracking-widest uppercase text-gold mb-2">Adresse</p>
-                <p className="font-sans font-light text-lg text-white/90">15 Route des Châteaux<br/>33460 Margaux, France</p>
-                <a 
-                  href="https://maps.google.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-4 font-sans text-xs tracking-widest uppercase text-white/70 hover:text-gold transition-colors duration-300 focus-gold"
-                >
-                  <span>Ouvrir dans Google Maps</span>
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </RevealWrapper>
-
-            <RevealWrapper animation="slide-right" delay={200}>
-              <div className="h-px w-12 bg-white/20 my-2" />
-            </RevealWrapper>
-
-            <RevealWrapper animation="slide-right" delay={300}>
-              <div>
-                <p className="font-sans font-bold text-xs tracking-widest uppercase text-gold mb-2">Téléphone</p>
-                <a 
-                  href="tel:+33123456789" 
-                  className="font-sans font-light text-lg text-white/90 hover:text-gold transition-colors duration-300 focus-gold"
-                >
-                  +33 1 23 45 67 89
-                </a>
-              </div>
-            </RevealWrapper>
-
-            <RevealWrapper animation="slide-right" delay={400}>
-              <div className="h-px w-12 bg-white/20 my-2" />
-            </RevealWrapper>
-
-            <RevealWrapper animation="slide-right" delay={500}>
-              <div>
-                <p className="font-sans font-bold text-xs tracking-widest uppercase text-gold mb-2">Email</p>
-                <a 
-                  href="mailto:contact@celebrations-voyages.com" 
-                  className="font-sans font-light text-lg text-white/90 hover:text-gold transition-colors duration-300 focus-gold"
-                >
-                  contact@celebrations-voyages.com
-                </a>
-              </div>
-            </RevealWrapper>
-          </div>
-        </div>
-
-        {/* Citation superposée */}
-        <div className="absolute bottom-12 left-12 right-12">
-          <RevealWrapper animation="fade-up" delay={600}>
-            <div className="cine-line w-12 mb-6 opacity-50 bg-gold/50" />
-            <p className="font-display italic text-white/80 text-xl lg:text-2xl leading-snug cine-text-shadow">
-              "Chaque détail compte,
-              <br />
-              chaque moment est unique."
-            </p>
-          </RevealWrapper>
-        </div>
-      </div>
-
-      {/* Côté droit — formulaire */}
-      <div className="flex items-center justify-center px-8 md:px-16 lg:px-24 py-24 md:pt-32 md:pb-24 overflow-y-auto">
-        <div className="w-full max-w-md mt-12 md:mt-16">
-          <RevealWrapper animation="fade-up">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        {/* Colonne gauche : Rassurance et infos */}
+        <RevealWrapper animation="slide-right">
+          <div>
             <SectionTitle
-              tag="04 · Contact"
-              title="Parlons de votre événement"
-              subtitle="Nous vous recontactons sous 24h."
+              tag="Disponibilités & Réservation"
+              title="Sécurisez votre date au Domaine"
+              subtitle="Notre équipe vous recontacte sous 1 heure avec les disponibilités, la brochure tarifaire et les options possibles."
               align="left"
             />
-          </RevealWrapper>
+            
+            <div className="mt-12 space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="text-gold mt-1">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-navy text-xl mb-1">Réponse express garantie</h4>
+                  <p className="font-sans font-light text-warm text-sm">Un conseiller dédié vous répond en moins d'une heure (heures ouvrées).</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="text-gold mt-1">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-navy text-xl mb-1">Visite sur rendez-vous</h4>
+                  <p className="font-sans font-light text-warm text-sm">Possibilité de visiter le domaine avant confirmation de votre réservation.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="text-gold mt-1">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-navy text-xl mb-1">Paiement sécurisé</h4>
+                  <p className="font-sans font-light text-warm text-sm">Acompte possible en ligne via plateforme sécurisée (Stripe) après validation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </RevealWrapper>
 
-          <RevealWrapper animation="fade-up" delay={200}>
-            {/* Message de succès */}
+        {/* Colonne droite : Formulaire court */}
+        <RevealWrapper animation="fade-up" delay={200}>
+          <div className="bg-white p-8 md:p-12 shadow-2xl rounded-sm border border-stone/20 relative">
+            {/* Ligne dorée en haut */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gold" />
+            
+            <h3 className="font-display font-bold text-2xl text-navy mb-8 text-center uppercase tracking-wider">
+              Vérifier ma date
+            </h3>
+
             {formState.status === 'success' && (
-              <div className="border border-gold/30 px-6 py-5 mb-8">
+              <div className="border border-gold/30 bg-gold/5 px-6 py-5 mb-8 text-center">
                 <p className="font-display font-bold text-navy text-lg mb-1">
-                  Demande envoyée
+                  Demande envoyée avec succès
                 </p>
                 <p className="font-sans font-light text-warm text-sm">
-                  Notre équipe vous recontactera très bientôt.
+                  Notre équipe vous contacte sous peu.
                 </p>
               </div>
             )}
 
-            {/* Message d'erreur */}
             {formState.status === 'error' && formState.error && (
-              <div className="border border-red-300/50 px-6 py-4 mb-8">
+              <div className="border border-red-300/50 bg-red-50/50 px-6 py-4 mb-8 text-center">
                 <p className="font-sans font-light text-red-600 text-sm">{formState.error}</p>
               </div>
             )}
 
             <form onSubmit={handleSubmit} noValidate>
-              <div className="space-y-2">
+              <div className="space-y-4">
+                {/* 1. Type d'événement */}
                 <div>
-                  <label htmlFor="contact-name" className="sr-only">Nom complet</label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Nom complet *"
-                    required
-                    className={inputClasses}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-email" className="sr-only">Email</label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Email *"
-                    required
-                    className={inputClasses}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-phone" className="sr-only">Téléphone</label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Téléphone"
-                    className={inputClasses}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-event" className="sr-only">Type d'événement</label>
+                  <label htmlFor="eventType" className="sr-only">Type d'événement</label>
                   <select
-                    id="contact-event"
+                    id="eventType"
                     name="eventType"
                     value={formData.eventType}
                     onChange={handleChange}
-                    className={`${inputClasses} ${
-                      formData.eventType === '' ? 'text-navy/60' : ''
-                    }`}
+                    className={`${inputClasses} ${formData.eventType === '' ? 'text-navy/60' : ''}`}
+                    required
                   >
-                    <option value="">Type d'événement</option>
+                    <option value="" disabled>Type d'événement *</option>
                     {EVENT_TYPE_OPTIONS.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
+                      <option key={option} value={option}>{option}</option>
                     ))}
                   </select>
                 </div>
 
+                {/* 2. Date */}
                 <div>
-                  <label htmlFor="contact-message" className="sr-only">Message</label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    value={formData.message}
+                  <label htmlFor="eventDate" className="sr-only">Date souhaitée</label>
+                  <input
+                    id="eventDate"
+                    type="date"
+                    name="eventDate"
+                    value={formData.eventDate}
                     onChange={handleChange}
-                    placeholder="Décrivez votre projet *"
+                    className={`${inputClasses} ${formData.eventDate === '' ? 'text-navy/60' : ''}`}
+                    aria-label="Date souhaitée"
+                  />
+                </div>
+
+                {/* 3. Nombre de personnes */}
+                <div>
+                  <label htmlFor="guests" className="sr-only">Nombre d'invités estimé</label>
+                  <input
+                    id="guests"
+                    type="number"
+                    name="guests"
+                    min="1"
+                    value={formData.guests}
+                    onChange={handleChange}
+                    placeholder="Nombre d'invités estimé"
+                    className={inputClasses}
+                  />
+                </div>
+
+                {/* 4. Téléphone */}
+                <div>
+                  <label htmlFor="phone" className="sr-only">Téléphone</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Numéro de téléphone *"
                     required
-                    rows={4}
-                    className={`${inputClasses} resize-none`}
+                    className={inputClasses}
+                  />
+                </div>
+
+                {/* 5. Email */}
+                <div>
+                  <label htmlFor="email" className="sr-only">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Adresse e-mail *"
+                    required
+                    className={inputClasses}
                   />
                 </div>
               </div>
@@ -261,20 +233,18 @@ export function Contact() {
                   variant="primary"
                   size="lg"
                   type="submit"
-                  className={`w-full ${
-                    formState.status === 'submitting'
-                      ? 'opacity-50 pointer-events-none'
-                      : ''
-                  }`}
+                  className={`w-full ${formState.status === 'submitting' ? 'opacity-50 pointer-events-none' : ''}`}
                 >
-                  {formState.status === 'submitting'
-                    ? 'Envoi en cours…'
-                    : 'Envoyer ma demande'}
+                  {formState.status === 'submitting' ? 'Envoi en cours…' : 'Recevoir la brochure & Tarifs'}
                 </Button>
               </div>
             </form>
-          </RevealWrapper>
-        </div>
+            
+            <p className="font-sans text-[10px] text-warm/60 text-center mt-6 uppercase tracking-wider">
+              Vos données sont protégées et ne seront jamais partagées.
+            </p>
+          </div>
+        </RevealWrapper>
       </div>
     </section>
   );

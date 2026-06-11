@@ -5,13 +5,82 @@
 
 import type { NavLink, Service, Advantage, GalleryImage } from '../types';
 
-/** Liens de navigation principaux */
-export const NAV_LINKS: NavLink[] = [
+// ─────────────────────────────────────────────────────────────
+// Navigation — Page Domaine des Élégances
+// ─────────────────────────────────────────────────────────────
+
+/** Liens de navigation pour la page Domaine */
+export const DOMAINE_NAV_LINKS: NavLink[] = [
   { id: 'nav-events', label: 'Événements', href: '#segments' },
   { id: 'nav-domaine', label: 'Le Domaine', href: '#rassurance' },
   { id: 'nav-galerie', label: 'Galerie', href: '#galerie' },
-  { id: 'nav-contact', label: 'Contact', href: '#conversion' },
+  { id: 'nav-infos', label: 'Infos', href: '#informations' },
+  { id: 'nav-contact', label: 'Contact', href: '#disponibilites' },
 ];
+
+/** Liens de navigation pour la page d'accueil (marque) */
+export const HOME_NAV_LINKS: NavLink[] = [
+  { id: 'nav-concept', label: 'Concept', href: '#concept' },
+  { id: 'nav-lieux', label: 'Nos Lieux', href: '#lieux' },
+  { id: 'nav-contact-home', label: 'Contact', href: '#contact-home' },
+];
+
+// Alias pour la compatibilité
+export const NAV_LINKS = DOMAINE_NAV_LINKS;
+
+// ─────────────────────────────────────────────────────────────
+// Formulaire court — Options d'événements (3 niches)
+// ─────────────────────────────────────────────────────────────
+
+/** Options du formulaire — types d'événements segmentés en 3 niches */
+export const EVENT_TYPE_OPTIONS: string[] = [
+  // Niche 1 : Cérémonies familiales
+  'Mariage',
+  'Baptême / Communion',
+  'Bar Mitzvah',
+  'Réception familiale',
+  // Niche 2 : Événements professionnels (Corporate)
+  'Séminaire d\'entreprise',
+  'Team building',
+  'Cocktail / Garden party corporate',
+  'Business club',
+  // Niche 3 : Fêtes privées
+  'Anniversaire',
+  'EVG / EVJF',
+  'Cousinade',
+  'Pool party',
+  // Autre
+  'Autre événement',
+];
+
+// ─────────────────────────────────────────────────────────────
+// Segments / Niches — les 3 portes d'entrée
+// ─────────────────────────────────────────────────────────────
+
+export const NICHES = [
+  {
+    id: 'ceremonies',
+    title: 'Cérémonies familiales',
+    subtitle: 'Mariages, baptêmes, communions, bar mitzvah',
+    icon: 'ceremony',
+  },
+  {
+    id: 'corporate',
+    title: 'Événements professionnels',
+    subtitle: 'Séminaires, team building, cocktails, business club',
+    icon: 'corporate',
+  },
+  {
+    id: 'fetes',
+    title: 'Fêtes privées',
+    subtitle: 'Anniversaires, EVG/EVJF, cousinades, pool parties',
+    icon: 'party',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Services (conservés pour la page d'accueil de la marque)
+// ─────────────────────────────────────────────────────────────
 
 /** Services / types d'événements proposés */
 export const SERVICES: Service[] = [
@@ -105,13 +174,4 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { id: 'gallery-6', src: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80', alt: 'Vue panoramique sur les jardins du domaine' },
   { id: 'gallery-7', src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80', alt: 'Ambiance lumineuse lors d\'un événement nocturne' },
   { id: 'gallery-8', src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1200&q=80', alt: 'Détails architecturaux et pierres chargées d\'histoire' },
-];
-
-/** Options du formulaire de contact — types d'événements */
-export const EVENT_TYPE_OPTIONS: string[] = [
-  'Anniversaire d\'Exception',
-  'EVG / EVJF',
-  'Séminaire d\'entreprise',
-  'Pool Party / Week-end prestige',
-  'Autre demande sur-mesure',
 ];

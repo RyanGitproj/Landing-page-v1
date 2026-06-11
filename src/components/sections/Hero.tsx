@@ -1,11 +1,12 @@
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import { Button } from '../ui/Button';
-
-// Importer l'image de fond
+import { RevealWrapper } from '../ui/RevealWrapper';
+import { NICHES } from '../../constants';
 import heroBg from '../../assets/images/hero-bg.jpeg';
 
 // ============================================================
-// Hero — mobile-first, premium
+// Hero — mobile-first, premium, conversion immédiate
+// Contient les 3 portes d'entrée (niches) visibles sans scroller
 // ============================================================
 
 export function Hero() {
@@ -14,73 +15,86 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] w-full flex flex-col justify-center overflow-hidden bg-navy pt-20"
+      className="relative min-h-[100dvh] w-full flex flex-col justify-end md:justify-center overflow-hidden bg-navy pb-10 md:pb-0 pt-24"
       aria-label="Section héro — Présentation du domaine"
     >
-      {/* Image de fond avec Ken Burns */}
+      {/* Image de fond avec effet cinématique */}
       <div className="absolute inset-0">
         <img
           src={heroBg}
           alt="Domaine des Élégances"
-          className="w-full h-full object-cover animate-ken-burns"
+          className="w-full h-full object-cover animate-ken-burns opacity-90"
         />
-        <div className="absolute inset-0 bg-navy/60" /> {/* Overlay sombre pour la lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-navy/30" />
       </div>
 
       {/* Contenu principal */}
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 lg:px-12 text-center md:text-left pt-12 md:pt-24 pb-16">
-        <div className="max-w-3xl">
-          {/* Titre */}
-          <h1
-            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-[1.15] mb-6 animate-fade-up drop-shadow-md"
-            style={{ animationDelay: '0.5s', animationFillMode: 'both' }}
-          >
-            Privatisez le<br />
-            <span className="text-gold">Domaine des Élégances</span>
-          </h1>
-
-          {/* Sous-titre */}
-          <p
-            className="font-sans font-light text-white/90 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl animate-fade-up drop-shadow-sm"
-            style={{ animationDelay: '0.7s', animationFillMode: 'both' }}
-          >
-            Un domaine élégant avec piscine intérieure, grand jardin et barnums de réception professionnels pour vos événements privés, familiaux et professionnels.
-          </p>
-
-          {/* CTA — deux boutons */}
-          <div
-            className="flex flex-col sm:flex-row gap-4 animate-fade-up"
-            style={{ animationDelay: '0.9s', animationFillMode: 'both' }}
-          >
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => scrollTo('#disponibilites')}
-              className="flex items-center justify-center gap-2"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              Voir les disponibilités
-            </Button>
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+        
+        {/* Colonne gauche : Promesse immédiate */}
+        <div className="max-w-2xl text-center md:text-left">
+          <RevealWrapper animation="fade-up" delay={200}>
+            <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-[1.1] mb-4 drop-shadow-lg">
+              Privatisez le<br />
+              <span className="text-gold">Domaine des Élégances</span>
+            </h1>
+            <p className="font-sans font-light text-white/90 text-lg md:text-xl leading-relaxed mb-8 max-w-xl drop-shadow-md mx-auto md:mx-0">
+              Un lieu d'exception privé avec piscine intérieure et grand jardin, pensé pour sublimer votre événement.
+            </p>
             
-            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="inline-block">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => scrollTo('#disponibilites')}
+                className="w-full sm:w-auto"
+              >
+                Vérifier les disponibilités
+              </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10"
+                onClick={() => scrollTo('#disponibilites')}
+                className="w-full sm:w-auto border-white/30"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                </svg>
-                Recevoir la brochure WhatsApp
+                Recevoir la brochure
               </Button>
-            </a>
-          </div>
+            </div>
+          </RevealWrapper>
         </div>
+
+        {/* Colonne droite : Les 3 portes d'entrée (Niches) */}
+        <div className="w-full md:w-80 flex flex-col gap-3">
+          <RevealWrapper animation="fade-up" delay={500}>
+            <p className="font-headline text-[10px] uppercase tracking-[0.2em] text-gold/80 mb-2 md:text-right hidden md:block">
+              Sélectionnez votre projet
+            </p>
+            {NICHES.map((niche, index) => (
+              <button
+                key={niche.id}
+                onClick={() => scrollTo('#segments')}
+                className="w-full flex items-center justify-between p-4 bg-navy/40 hover:bg-navy/80 border border-white/10 hover:border-gold/50 backdrop-blur-sm transition-all duration-300 group text-left rounded-sm"
+                style={{ animationDelay: `${700 + (index * 100)}ms`, animationFillMode: 'both' }}
+              >
+                <div>
+                  <h3 className="font-display font-bold text-white text-lg group-hover:text-gold transition-colors">
+                    {niche.title}
+                  </h3>
+                  <p className="font-sans font-light text-white/50 text-[11px] uppercase tracking-wider mt-1">
+                    {niche.subtitle}
+                  </p>
+                </div>
+                <div className="text-white/30 group-hover:text-gold transition-colors ml-4 shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </button>
+            ))}
+          </RevealWrapper>
+        </div>
+
       </div>
     </section>
   );

@@ -34,13 +34,13 @@ export interface GalleryImage {
   alt: string;
 }
 
-/** Données du formulaire de contact */
+/** Données du formulaire court de conversion */
 export interface ContactFormData {
-  name: string;
-  email: string;
-  phone: string;
   eventType: string;
-  message: string;
+  eventDate: string;
+  guests: string;
+  phone: string;
+  email: string;
 }
 
 /** État de soumission du formulaire */

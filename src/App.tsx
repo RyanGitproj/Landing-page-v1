@@ -1,29 +1,42 @@
 // ============================================================
 // App.tsx — Point d'entrée de l'application one-page
-// Toutes les sections sont assemblées ici, pas de React Router
+// Architecture de tunnel de vente premium : Domaine des Élégances
 // ============================================================
 
 import { Navbar } from './components/sections/Navbar';
 import { Hero } from './components/sections/Hero';
-import { Services } from './components/sections/Services';
-import { Advantages } from './components/sections/Advantages';
+import { PromesseSegmentation } from './components/sections/PromesseSegmentation';
+import { BeneficesRassurance } from './components/sections/BeneficesRassurance';
 import { Gallery } from './components/sections/Gallery';
-import { Contact } from './components/sections/Contact';
+import { InformationsEssentielles } from './components/sections/InformationsEssentielles';
+import { ConversionFinale } from './components/sections/ConversionFinale';
 import { Footer } from './components/sections/Footer';
 
 function App() {
   return (
     <div className="min-h-screen">
-      {/* Navigation principale sticky */}
+      {/* 1. Header discret */}
       <Navbar />
 
-      {/* Contenu principal sémantique */}
+      {/* Contenu principal du tunnel de vente */}
       <main>
+        {/* 2. Hero */}
         <Hero />
-        <Services />
-        <Advantages />
+        
+        {/* 3 & 7. Promesse et Segments */}
+        <PromesseSegmentation />
+        
+        {/* 5 & 6. Rassurance et Bénéfices */}
+        <BeneficesRassurance />
+        
+        {/* 8. Galerie photos réelles */}
         <Gallery />
-        <Contact />
+        
+        {/* 9. Informations essentielles */}
+        <InformationsEssentielles />
+        
+        {/* 10. Conversion finale */}
+        <ConversionFinale />
       </main>
 
       {/* Pied de page */}

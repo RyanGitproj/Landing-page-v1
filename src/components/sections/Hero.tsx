@@ -1,10 +1,11 @@
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import { Button } from '../ui/Button';
 
+// Importer l'image de fond
+import heroBg from '../../assets/images/hero-bg.jpeg';
+
 // ============================================================
-// Hero cinématique — plein écran, ken burns sur l'image,
-// typographie massive avec révélation séquentielle,
-// ambiance ouverture de film
+// Hero — mobile-first, premium
 // ============================================================
 
 export function Hero() {
@@ -13,102 +14,74 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-navy pt-32"
+      className="relative min-h-[90vh] w-full flex flex-col justify-center overflow-hidden bg-navy pt-20"
       aria-label="Section héro — Présentation du domaine"
     >
       {/* Image de fond avec Ken Burns */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80"
-          alt="Domaine d'exception et jardins somptueux"
+          src={heroBg}
+          alt="Domaine des Élégances"
           className="w-full h-full object-cover animate-ken-burns"
         />
-        {/* Vignette cinématique + gradient bas */}
-        <div className="absolute inset-0 cine-vignette" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
-        {/* Bande noire cinématique en haut — effet letterbox subtil */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-navy/80 to-transparent" />
+        <div className="absolute inset-0 bg-navy/60" /> {/* Overlay sombre pour la lisibilité */}
       </div>
 
-      {/* Contenu principal — en bas de l'écran, comme un titre de film */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 pb-24 md:pb-32">
-        <div className="max-w-4xl">
-          {/* Tag doré — numéro de scène */}
-          <p className="scene-number mb-6 animate-fade-in uppercase tracking-[0.2em]" style={{ animationDelay: '0.5s' }}>
-            Célébrations Voyages France
-          </p>
-
-          {/* Titre L1 — massif, serif, cinématique */}
+      {/* Contenu principal */}
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 lg:px-12 text-center md:text-left pt-12 md:pt-24 pb-16">
+        <div className="max-w-3xl">
+          {/* Titre */}
           <h1
-            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight mb-8 cine-text-shadow animate-fade-up uppercase"
-            style={{ animationDelay: '0.8s', animationFillMode: 'both' }}
+            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-[1.15] mb-6 animate-fade-up drop-shadow-md"
+            style={{ animationDelay: '0.5s', animationFillMode: 'both' }}
           >
-            Un domaine d'exception,
-            <br />
-            <span className="text-gold">et de prestige avec piscine</span>
+            Privatisez le<br />
+            <span className="text-gold">Domaine des Élégances</span>
           </h1>
 
-          {/* Hook Neuromarketing et Liste de produits */}
-          <div
-            className="mb-10 animate-fade-up"
-            style={{ animationDelay: '1.2s', animationFillMode: 'both' }}
+          {/* Sous-titre */}
+          <p
+            className="font-sans font-light text-white/90 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl animate-fade-up drop-shadow-sm"
+            style={{ animationDelay: '0.7s', animationFillMode: 'both' }}
           >
-            <p className="font-sans font-bold text-white text-3xl md:text-4xl mb-6 tracking-wide drop-shadow-lg">
-              <span className="text-gold">⋙</span> À 15MIN D'ICI...
-            </p>
-            
-            <div className="bg-navy/40 backdrop-blur-sm p-6 rounded-lg border border-gold/20 inline-block">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 font-sans font-bold text-white text-lg md:text-xl tracking-wider">
-                <li className="flex items-center gap-3"><span className="text-gold text-2xl">•</span> ANNIVERSAIRES</li>
-                <li className="flex items-center gap-3"><span className="text-gold text-2xl">•</span> SÉMINAIRES</li>
-                <li className="flex items-center gap-3"><span className="text-gold text-2xl">•</span> EVG/EVJF</li>
-                <li className="flex items-center gap-3"><span className="text-gold text-2xl">•</span> POOL PARTY</li>
-              </ul>
-            </div>
-          </div>
+            Un domaine élégant avec piscine intérieure, grand jardin et barnums de réception professionnels pour vos événements privés, familiaux et professionnels.
+          </p>
 
           {/* CTA — deux boutons */}
           <div
             className="flex flex-col sm:flex-row gap-4 animate-fade-up"
-            style={{ animationDelay: '1.6s', animationFillMode: 'both' }}
+            style={{ animationDelay: '0.9s', animationFillMode: 'both' }}
           >
             <Button
-              variant="outline"
+              variant="primary"
               size="lg"
-              onClick={() => scrollTo('#evenements')}
+              onClick={() => scrollTo('#disponibilites')}
+              className="flex items-center justify-center gap-2"
             >
-              Découvrir
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Voir les disponibilités
             </Button>
-            <Button
-              variant="ghost"
-              size="lg"
-              onClick={() => scrollTo('#contact')}
-            >
-              Nous contacter →
-            </Button>
+            
+            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="inline-block">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                Recevoir la brochure WhatsApp
+              </Button>
+            </a>
           </div>
         </div>
-
-        {/* URL en bas à droite — comme un watermark de film */}
-        <p
-          className="hidden md:block absolute bottom-32 right-12 font-sans font-light text-white/20 text-[10px] tracking-[0.3em] uppercase animate-fade-in"
-          style={{ animationDelay: '2s', animationFillMode: 'both' }}
-        >
-          célébrations-voyages.fr
-        </p>
       </div>
-
-      {/* Indicateur de scroll — barre verticale dorée qui pulse */}
-      <button
-        onClick={() => scrollTo('#evenements')}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 group focus-gold"
-        aria-label="Défiler vers le contenu"
-      >
-        <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-white/30 group-hover:text-gold/60 transition-colors duration-300">
-          Scroll
-        </span>
-        <span className="block w-px h-12 bg-gradient-to-b from-gold/60 to-transparent animate-float" />
-      </button>
     </section>
   );
 }

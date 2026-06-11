@@ -32,17 +32,17 @@ export function Navbar() {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo — typographie pure, pas de brackets visibles */}
+          {/* Logo — typographie pure */}
           <button
             onClick={() => scrollTo('#')}
             className="group flex flex-col items-start leading-none focus-gold"
             aria-label="Retour en haut de page"
           >
             <span className="font-headline font-bold text-sm tracking-[0.3em] uppercase text-white transition-colors duration-300 group-hover:text-gold">
-              Célébrations
+              Lieu de Célébration
             </span>
-            <span className="font-sans font-light text-[9px] tracking-[0.4em] uppercase text-gold/70">
-              Voyages France
+            <span className="font-sans font-light text-[9px] tracking-[0.4em] uppercase text-gold/70 mt-1">
+              Domaine des Élégances
             </span>
           </button>
 
@@ -60,7 +60,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handleNavClick('#contact')}
+              onClick={() => handleNavClick('#conversion')}
               className="border-gold/40 text-gold hover:bg-gold hover:text-navy ml-4"
             >
               Réserver
@@ -124,7 +124,7 @@ export function Navbar() {
           <Button
             variant="outline"
             size="lg"
-            onClick={() => handleNavClick('#contact')}
+            onClick={() => handleNavClick('#conversion')}
             className="border-gold text-gold hover:bg-gold hover:text-navy"
           >
             Réserver

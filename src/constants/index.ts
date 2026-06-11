@@ -7,10 +7,10 @@ import type { NavLink, Service, Advantage, GalleryImage } from '../types';
 
 /** Liens de navigation principaux */
 export const NAV_LINKS: NavLink[] = [
-  { id: 'nav-events', label: 'Événements', href: '#evenements' },
-  { id: 'nav-domaine', label: 'Le Domaine', href: '#domaine' },
+  { id: 'nav-events', label: 'Événements', href: '#segments' },
+  { id: 'nav-domaine', label: 'Le Domaine', href: '#rassurance' },
   { id: 'nav-galerie', label: 'Galerie', href: '#galerie' },
-  { id: 'nav-contact', label: 'Contact', href: '#contact' },
+  { id: 'nav-contact', label: 'Contact', href: '#conversion' },
 ];
 
 /** Services / types d'événements proposés */

@@ -1,6 +1,6 @@
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
-import piscineImg from '../../assets/images/Piscine.jpeg';
+import piscineImg from '../../assets/images/pool-house-piscine-interieure.jpeg';
 
 const POOL_HOUSE_POINTS = [
   'Pool house 250 m²',

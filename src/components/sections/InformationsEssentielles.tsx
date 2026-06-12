@@ -2,10 +2,10 @@ import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
 
 const INFOS = [
-  ['Capacité invités en journée', 'À confirmer'],
-  ['Capacité réception', 'Selon configuration'],
-  ['Nombre de couchages', '22 couchages à confirmer commercialement'],
-  ['Parking', 'Parking disponible sur le domaine, capacité à confirmer'],
+  ['Capacité invités en journée', 'Selon configuration'],
+  ['Capacité réception', "Selon configuration, par exemple mariage jusqu'à 70 personnes"],
+  ['Nombre de couchages', '22 couchages, avec possibilité d’emplacements tente ou bivouac'],
+  ['Parking', 'Parking disponible sur le domaine'],
   ['Pool house', '250 m²'],
   ['Piscine', 'Intérieure, accessible pendant le séjour'],
   ['Sauna', 'Accessible pendant le séjour'],
@@ -27,7 +27,7 @@ export function InformationsEssentielles() {
           <SectionTitle
             tag="Informations pratiques"
             title="Informations essentielles du domaine"
-            subtitle="Les données non validées restent indiquées à confirmer ou selon configuration afin de ne pas promettre un chiffre non vérifié."
+            subtitle="Les capacités dépendent de la formule, de la configuration choisie et des conditions du domaine."
             align="center"
             light
           />

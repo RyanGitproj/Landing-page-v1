@@ -2,7 +2,7 @@ import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import { Button } from '../ui/Button';
 import { RevealWrapper } from '../ui/RevealWrapper';
 import { getWhatsAppBrochureUrl, NICHES } from '../../constants';
-import heroBg from '../../assets/images/hero-bg.jpeg';
+import heroBg from '../../assets/images/domaine-hero-nuit.jpeg';
 
 // ============================================================
 // Hero — mobile-first, premium, conversion immédiate

@@ -1,14 +1,14 @@
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
-import heroImg from '../../assets/images/hero-bg.jpeg';
-import receptionImg from '../../assets/images/grande salle 2.jpeg';
+import heroImg from '../../assets/images/domaine-hero-nuit.jpeg';
+import receptionImg from '../../assets/images/reception-barnum-nuit.jpeg';
 
 const BARNUM_POINTS = [
   'Barnums professionnels en supplément',
   'Installation par partenaire',
   'Configuration selon événement',
   'Tables, décoration, traiteur, DJ et lumière possibles',
-  'Photos partenaires à ajouter',
+  'Photos d’exemple disponibles',
 ];
 
 export function BarnumsReception() {
@@ -42,12 +42,12 @@ export function BarnumsReception() {
               <figure className="relative overflow-hidden rounded-sm mt-10">
                 <img
                   src={receptionImg}
-                  alt="Exemple d'ambiance de réception à compléter avec photos barnums partenaires"
+                  alt="Barnums professionnels installés dans le parc du domaine"
                   className="w-full h-72 md:h-96 object-cover"
                   loading="lazy"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-navy/80 p-4 font-sans text-xs text-white/70">
-                  Photos barnums partenaires à ajouter
+                  Barnums professionnels disponibles en supplément
                 </figcaption>
               </figure>
             </div>

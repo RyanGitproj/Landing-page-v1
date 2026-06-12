@@ -2,8 +2,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
 
-import heroImg from '../../assets/images/hero-bg.jpeg';
-import piscineImg from '../../assets/images/Piscine.jpeg';
+import heroImg from '../../assets/images/domaine-hero-nuit.jpeg';
+import piscineImg from '../../assets/images/pool-house-piscine-interieure.jpeg';
+import saunaImg from '../../assets/images/sauna-interieur.jpeg';
+import barnumImg from '../../assets/images/reception-barnum-nuit.jpeg';
 import grandeSalleImg from '../../assets/images/grande salle.jpeg';
 import grandeSalle2Img from '../../assets/images/grande salle 2.jpeg';
 import seminaireImg from '../../assets/images/seminaire.jpeg';
@@ -50,6 +52,22 @@ const GALLERY_IMAGES: GalleryItem[] = [
     title: 'Pool house 250 m²',
     caption: 'Pool house 250 m² avec piscine intérieure',
     span: 'col-span-6 md:col-span-5',
+  },
+  {
+    id: 'sauna',
+    src: saunaImg,
+    alt: 'Sauna du domaine',
+    title: 'Sauna',
+    caption: 'Sauna accessible pendant le séjour',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'barnums',
+    src: barnumImg,
+    alt: 'Barnums professionnels installés dans le parc du domaine',
+    title: 'Barnums professionnels',
+    caption: 'Barnums professionnels disponibles en supplément avec nos partenaires',
+    span: 'col-span-6 md:col-span-4',
   },
   {
     id: 'interieurs',
@@ -190,7 +208,7 @@ export function Gallery() {
           <SectionTitle
             tag="Galerie"
             title="Découvrez le domaine en images"
-            subtitle="Extérieur, parc arboré, pool house 250 m², piscine intérieure, couchages et espaces intérieurs — 100% photos réelles du domaine."
+            subtitle="Extérieur, parc arboré, pool house 250 m², piscine intérieure, sauna, barnums, couchages et espaces intérieurs — 100% photos réelles du domaine."
             align="center"
             light
           />

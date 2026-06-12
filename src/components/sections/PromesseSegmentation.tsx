@@ -4,7 +4,7 @@ import { RevealWrapper } from '../ui/RevealWrapper';
 // Import des images
 import ceremonieImg from '../../assets/images/grande salle.jpeg';
 import seminaireImg from '../../assets/images/seminaire.jpeg';
-import anniversaireImg from '../../assets/images/Piscine.jpeg';
+import anniversaireImg from '../../assets/images/pool-house-piscine-interieure.jpeg';
 
 // ============================================================
 // Promesse et Segmentation — Style cinématique split-screen

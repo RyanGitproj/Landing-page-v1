@@ -3,6 +3,7 @@ import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
 
 import heroImg from '../../assets/images/domaine-hero-nuit.jpeg';
+import oldHeroImg from '../../assets/images/hero-bg.jpeg';
 import piscineImg from '../../assets/images/pool-house-piscine-interieure.jpeg';
 import saunaImg from '../../assets/images/sauna-interieur.jpeg';
 import barnumImg from '../../assets/images/reception-barnum-nuit.jpeg';
@@ -10,13 +11,17 @@ import grandeSalleImg from '../../assets/images/grande salle.jpeg';
 import grandeSalle2Img from '../../assets/images/grande salle 2.jpeg';
 import seminaireImg from '../../assets/images/seminaire.jpeg';
 import verandaImg from '../../assets/images/veranda.jpeg';
+import cuisineImg from '../../assets/images/cuisine.jpeg';
 import pianoImg from '../../assets/images/piano.jpeg';
 import chambre1Img from '../../assets/images/chambre 1.jpeg';
 import chambre2Img from '../../assets/images/chambre 2.jpeg';
+import chambre3Img from '../../assets/images/chambre 3.jpeg';
+import chambre4Img from '../../assets/images/chambre 4.jpeg';
 import baignoireImg from '../../assets/images/baignoire.jpeg';
 import salleEauImg from "../../assets/images/salle d'eau.jpeg";
 import salleBainImg from '../../assets/images/salle de bain.jpeg';
 import imageImg from '../../assets/images/image.jpeg';
+import parcDomaineImg from '../../assets/images/parc-du-domaine.jpeg';
 
 interface GalleryItem {
   id: string;
@@ -26,6 +31,8 @@ interface GalleryItem {
   caption: string;
   span: string;
 }
+
+const INITIAL_VISIBLE_IMAGES = 9;
 
 // Galerie commerciale — photos réelles uniquement, pas de placeholder
 const GALLERY_IMAGES: GalleryItem[] = [
@@ -39,11 +46,19 @@ const GALLERY_IMAGES: GalleryItem[] = [
   },
   {
     id: 'parc',
-    src: imageImg,
+    src: parcDomaineImg,
     alt: 'Parc du domaine',
     title: 'Parc du domaine',
-    caption: 'Le parc du domaine pour vos cocktails, photos et réceptions',
+    caption: 'Le parc du domaine autour du pool house et des espaces extérieurs',
     span: 'col-span-6 md:col-span-5',
+  },
+  {
+    id: 'exterieur-jour',
+    src: oldHeroImg,
+    alt: 'Vue extérieure de jour du Domaine des Élégances',
+    title: 'Extérieur de jour',
+    caption: 'Façade du domaine et arrivée des invités',
+    span: 'col-span-12 md:col-span-4',
   },
   {
     id: 'pool-house',
@@ -78,6 +93,14 @@ const GALLERY_IMAGES: GalleryItem[] = [
     span: 'col-span-12 md:col-span-8 row-span-2',
   },
   {
+    id: 'salle-eau',
+    src: salleEauImg,
+    alt: "Salle d'eau moderne",
+    title: "Salle d'eau",
+    caption: "Salle d'eau moderne pour les invités hébergés",
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
     id: 'couchages',
     src: chambre1Img,
     alt: 'Couchages sur place',
@@ -91,6 +114,14 @@ const GALLERY_IMAGES: GalleryItem[] = [
     alt: 'Ambiance réception et tables',
     title: 'Réception & décoration',
     caption: 'Espaces modulables pour vos réceptions privées et événements',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'ambiance-parc',
+    src: imageImg,
+    alt: 'Vue extérieure complémentaire du domaine',
+    title: 'Vue du domaine',
+    caption: 'Vue complémentaire des extérieurs et accès du domaine',
     span: 'col-span-6 md:col-span-4',
   },
   {
@@ -110,11 +141,35 @@ const GALLERY_IMAGES: GalleryItem[] = [
     span: 'col-span-6 md:col-span-4',
   },
   {
+    id: 'chambre-vue-parc',
+    src: chambre3Img,
+    alt: 'Chambre avec vue sur le parc du domaine',
+    title: 'Chambre avec vue parc',
+    caption: 'Couchages sur place pour prolonger l’événement',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'chambre-cosy',
+    src: chambre4Img,
+    alt: 'Chambre cosy du domaine',
+    title: 'Chambre cosy',
+    caption: 'Espace nuit complémentaire pour les séjours sur place',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
     id: 'veranda',
     src: verandaImg,
     alt: 'Véranda lumineuse du domaine',
     title: 'Véranda',
     caption: 'Véranda lumineuse pour moments de détente et accueil',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'cuisine',
+    src: cuisineImg,
+    alt: 'Cuisine équipée du domaine',
+    title: 'Cuisine équipée',
+    caption: 'Cuisine disponible selon la formule et l’organisation retenue',
     span: 'col-span-6 md:col-span-4',
   },
   {
@@ -141,18 +196,14 @@ const GALLERY_IMAGES: GalleryItem[] = [
     caption: 'Salle de bain élégante pour les couchages du domaine',
     span: 'col-span-6 md:col-span-4',
   },
-  {
-    id: 'salle-eau',
-    src: salleEauImg,
-    alt: "Salle d'eau moderne",
-    title: "Salle d'eau",
-    caption: "Salle d'eau moderne pour les invités hébergés",
-    span: 'col-span-6 md:col-span-3',
-  },
 ];
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const visibleImages = isExpanded
+    ? GALLERY_IMAGES
+    : GALLERY_IMAGES.slice(0, INITIAL_VISIBLE_IMAGES);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -160,17 +211,17 @@ export function Gallery() {
       if (e.key === 'Escape') {
         setSelectedImage(null);
       }
-      const currentIndex = GALLERY_IMAGES.findIndex((img) => img.id === selectedImage.id);
+      const currentIndex = visibleImages.findIndex((img) => img.id === selectedImage.id);
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedImage(GALLERY_IMAGES[(currentIndex + 1) % GALLERY_IMAGES.length]);
+        setSelectedImage(visibleImages[(currentIndex + 1) % visibleImages.length]);
       }
       if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
-        setSelectedImage(GALLERY_IMAGES[(currentIndex - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length]);
+        setSelectedImage(visibleImages[(currentIndex - 1 + visibleImages.length) % visibleImages.length]);
       }
     },
-    [selectedImage]
+    [selectedImage, visibleImages]
   );
 
   useEffect(() => {
@@ -187,14 +238,14 @@ export function Gallery() {
 
   const goToNext = () => {
     if (!selectedImage) return;
-    const i = GALLERY_IMAGES.findIndex((img) => img.id === selectedImage.id);
-    setSelectedImage(GALLERY_IMAGES[(i + 1) % GALLERY_IMAGES.length]);
+    const i = visibleImages.findIndex((img) => img.id === selectedImage.id);
+    setSelectedImage(visibleImages[(i + 1) % visibleImages.length]);
   };
 
   const goToPrev = () => {
     if (!selectedImage) return;
-    const i = GALLERY_IMAGES.findIndex((img) => img.id === selectedImage.id);
-    setSelectedImage(GALLERY_IMAGES[(i - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length]);
+    const i = visibleImages.findIndex((img) => img.id === selectedImage.id);
+    setSelectedImage(visibleImages[(i - 1 + visibleImages.length) % visibleImages.length]);
   };
 
   return (
@@ -215,7 +266,7 @@ export function Gallery() {
         </RevealWrapper>
 
         <div className="grid grid-cols-12 gap-2 md:gap-3 mt-16 md:mt-24 auto-rows-[180px] md:auto-rows-[220px] lg:auto-rows-[260px]">
-          {GALLERY_IMAGES.map((image, index) => (
+          {visibleImages.map((image, index) => (
             <RevealWrapper
               key={image.id}
               animation="fade-in"
@@ -248,6 +299,17 @@ export function Gallery() {
               </button>
             </RevealWrapper>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setIsExpanded((current) => !current)}
+            className="border border-gold/50 px-10 py-4 font-headline font-semibold uppercase tracking-[0.22em] text-xs text-gold hover:bg-gold hover:text-navy transition-colors duration-300 focus-gold"
+            aria-expanded={isExpanded}
+          >
+            {isExpanded ? 'Voir moins de photos' : `Voir plus de photos (${GALLERY_IMAGES.length - INITIAL_VISIBLE_IMAGES})`}
+          </button>
         </div>
       </div>
 

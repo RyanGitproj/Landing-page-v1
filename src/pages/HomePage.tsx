@@ -73,7 +73,7 @@ export function HomePage() {
                   Domaine des Élégances
                 </h3>
                 <p className="font-sans font-light text-warm text-sm mb-4">
-                  Domaine premium avec piscine intérieure chauffée, grand jardin et espaces de réception modulables.
+                  Domaine premium avec piscine intérieure, parc arboré du domaine et espaces modulables pour vos réceptions.
                 </p>
                 <span className="inline-flex items-center gap-2 font-headline uppercase tracking-widest text-[10px] text-gold group-hover:text-gold-dark transition-colors">
                   Visiter ce domaine <span aria-hidden="true">→</span>

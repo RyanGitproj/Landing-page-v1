@@ -15,7 +15,8 @@ export function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isDomainePage = location.pathname.includes('domaine-des-elegances');
+  // La page d'accueil (/) EST maintenant la page du Domaine.
+  const isDomainePage = location.pathname === '/' || location.pathname.includes('domaine-des-elegances');
   const navLinks = isDomainePage ? DOMAINE_NAV_LINKS : HOME_NAV_LINKS;
 
   // Fermer le menu mobile lors d'un changement de route
@@ -68,12 +69,12 @@ export function Navbar() {
             </Link>
 
             {/* Liens — desktop */}
-            <div className="hidden md:flex items-center gap-10">
+            <div className="hidden md:flex items-center gap-5">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.href)}
-                  className="font-sans font-light text-[11px] uppercase tracking-[0.2em] text-white/70 hover:text-gold transition-colors duration-300 focus-gold"
+                  className="font-sans font-light text-[10px] uppercase tracking-[0.12em] text-white/70 hover:text-gold transition-colors duration-300 focus-gold"
                 >
                   {link.label}
                 </button>
@@ -82,9 +83,9 @@ export function Navbar() {
                 variant="outline"
                 size="sm"
                 onClick={() => isDomainePage ? handleNavClick('#disponibilites') : navigate('/domaine-des-elegances')}
-                className="border-gold/40 text-gold hover:bg-gold hover:text-navy ml-4"
+                className="border-gold/40 text-gold hover:bg-gold hover:text-navy ml-2"
               >
-                {isDomainePage ? 'Vérifier la date' : 'Voir les Domaines'}
+                {isDomainePage ? 'Disponibilités' : 'Voir les Domaines'}
               </Button>
             </div>
 
@@ -124,7 +125,7 @@ export function Navbar() {
             <button
               key={link.id}
               onClick={() => handleNavClick(link.href)}
-              className="font-display font-bold text-3xl text-white hover:text-gold transition-all duration-300 focus-gold"
+              className="font-display font-bold text-2xl text-white hover:text-gold transition-all duration-300 focus-gold"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               {link.label}
@@ -137,7 +138,7 @@ export function Navbar() {
             onClick={() => isDomainePage ? handleNavClick('#disponibilites') : navigate('/domaine-des-elegances')}
             className="border-gold text-gold hover:bg-gold hover:text-navy"
           >
-            {isDomainePage ? 'Vérifier la date' : 'Voir les Domaines'}
+            {isDomainePage ? 'Disponibilités' : 'Voir les Domaines'}
           </Button>
         </div>
       </div>

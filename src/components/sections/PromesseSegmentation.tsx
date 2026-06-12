@@ -14,19 +14,19 @@ const SEGMENTS = [
   {
     id: 'ceremonies',
     title: 'Cérémonies & réceptions familiales',
-    description: 'Mariages, baptêmes, communions, bar mitzvah et réceptions familiales. Un cadre élégant et chaleureux pour réunir vos proches dans un lieu privé d\'exception.',
+    description: 'Mariages, baptêmes, communions, bar mitzvah et réceptions familiales. Un domaine privé et élégant pour réunir vos proches dans un cadre chaleureux et mémorable.',
     imageUrl: ceremonieImg,
   },
   {
     id: 'seminaires',
-    title: 'Séminaires & événements corporate',
-    description: 'Séminaires, team building, business club, cocktails et garden parties professionnelles. Un environnement calme et valorisant pour vos équipes et partenaires.',
+    title: 'Séminaires & événements professionnels',
+    description: 'Séminaires, team building, business club, cocktails et garden parties professionnelles. Un environnement calme, valorisant et privatisable pour recevoir vos équipes, clients ou partenaires.',
     imageUrl: seminaireImg,
   },
   {
     id: 'anniversaires',
     title: 'Anniversaires & fêtes privées',
-    description: "Anniversaires d'exception, EVG/EVJF, cousinades et fêtes entre amis. Un lieu privé et mémorable pour vos invités, avec piscine intérieure et grand jardin.",
+    description: "Anniversaires d'exception, cousinades, pool parties, EVG/EVJF, c'est-à-dire fêtes entre amis pour futurs mariés. Un domaine privé avec pool house, piscine intérieure, parc et prestataires possibles pour créer un vrai moment de fête.",
     imageUrl: anniversaireImg,
   },
 ];

@@ -9,13 +9,12 @@ import type { NavLink } from '../types';
 // Navigation — Page Domaine des Élégances
 // ─────────────────────────────────────────────────────────────
 
-/** Liens de navigation pour la page Domaine */
+/** Liens de navigation pour la page Domaine — orientés conversion (5 liens max) */
 export const DOMAINE_NAV_LINKS: NavLink[] = [
   { id: 'nav-events', label: 'Événements', href: '#segments' },
-  { id: 'nav-domaine', label: 'Le Domaine', href: '#rassurance' },
+  { id: 'nav-pool-house', label: 'Pool House', href: '#pool-house' },
   { id: 'nav-galerie', label: 'Galerie', href: '#galerie' },
   { id: 'nav-infos', label: 'Infos', href: '#informations' },
-  { id: 'nav-contact', label: 'Contact', href: '#disponibilites' },
 ];
 
 /** Liens de navigation pour la page d'accueil (marque) */
@@ -67,7 +66,7 @@ export const NICHES = [
   {
     id: 'corporate',
     title: 'Événements professionnels',
-    subtitle: 'Séminaires, team building, cocktails, business club',
+    subtitle: 'Séminaires, team building, cocktails, garden parties',
     icon: 'corporate',
   },
   {
@@ -77,3 +76,30 @@ export const NICHES = [
     icon: 'party',
   },
 ];
+
+// WhatsApp / WATI : remplacer la valeur vide par le vrai lien fourni par le client.
+export const WHATSAPP_BROCHURE_URL: string = '';
+
+export const WHATSAPP_QUALIFICATION_MESSAGE = [
+  'Bonjour, je souhaite recevoir la brochure du Domaine des Élégances.',
+  '',
+  'Nom / prénom :',
+  "Type d'événement :",
+  'Date souhaitée :',
+  "Nombre d'invités :",
+  'Besoin de couchages :',
+  'Besoin de barnum :',
+  'Besoin traiteur / DJ / barman :',
+  'Souhait de visite :',
+  'Téléphone :',
+  'Email :',
+].join('\n');
+
+export const getWhatsAppBrochureUrl = () => {
+  if (!WHATSAPP_BROCHURE_URL) {
+    return '';
+  }
+
+  const separator = WHATSAPP_BROCHURE_URL.includes('?') ? '&' : '?';
+  return `${WHATSAPP_BROCHURE_URL}${separator}text=${encodeURIComponent(WHATSAPP_QUALIFICATION_MESSAGE)}`;
+};

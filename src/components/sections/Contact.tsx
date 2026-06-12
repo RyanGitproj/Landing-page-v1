@@ -8,12 +8,14 @@ import type { ContactFormData, ContactFormState } from '../../types';
 
 // ============================================================
 // Formulaire Court de Conversion — `#disponibilites`
-// Limité à 5 champs pour maximiser le taux de conversion
+// Checklist : Type d'événement, date, nombre de personnes,
+// téléphone, email. Pas plus.
 // ============================================================
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const INITIAL_FORM_DATA: ContactFormData = {
+  name: '',
   eventType: '',
   eventDate: '',
   guests: '',
@@ -36,10 +38,10 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.eventType || !formData.email.trim() || !formData.phone.trim()) {
+    if (!formData.name.trim() || !formData.eventType || !formData.phone.trim() || !formData.email.trim()) {
       setFormState({
         status: 'error',
-        error: 'Veuillez remplir les champs obligatoires (Type, Téléphone, Email).',
+        error: 'Veuillez remplir les champs obligatoires (Nom, Type, Téléphone, Email).',
       });
       return;
     }
@@ -76,7 +78,7 @@ export function Contact() {
             <SectionTitle
               tag="Disponibilités & Réservation"
               title="Sécurisez votre date au Domaine"
-              subtitle="Notre équipe vous recontacte sous 1 heure avec les disponibilités, la brochure tarifaire et les options possibles."
+              subtitle="Notre équipe vous recontacte avec les disponibilités, la brochure, les options possibles et une proposition de rappel commercial."
               align="left"
             />
             
@@ -124,7 +126,7 @@ export function Contact() {
           </div>
         </RevealWrapper>
 
-        {/* Colonne droite : Formulaire court */}
+        {/* Colonne droite : Formulaire court — 5 champs max (checklist) */}
         <RevealWrapper animation="fade-up" delay={200}>
           <div className="bg-white p-8 md:p-12 shadow-2xl rounded-sm border border-stone/20 relative">
             {/* Ligne dorée en haut */}
@@ -153,7 +155,22 @@ export function Contact() {
 
             <form onSubmit={handleSubmit} noValidate>
               <div className="space-y-4">
-                {/* 1. Type d'événement */}
+                {/* 1. Nom / prénom */}
+                <div>
+                  <label htmlFor="name" className="sr-only">Nom et prénom</label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Nom / prénom *"
+                    required
+                    className={inputClasses}
+                  />
+                </div>
+
+                {/* 2. Type d'événement */}
                 <div>
                   <label htmlFor="eventType" className="sr-only">Type d'événement</label>
                   <select
@@ -171,7 +188,7 @@ export function Contact() {
                   </select>
                 </div>
 
-                {/* 2. Date */}
+                {/* 3. Date */}
                 <div>
                   <label htmlFor="eventDate" className="sr-only">Date souhaitée</label>
                   <input
@@ -185,7 +202,7 @@ export function Contact() {
                   />
                 </div>
 
-                {/* 3. Nombre de personnes */}
+                {/* 4. Nombre de personnes */}
                 <div>
                   <label htmlFor="guests" className="sr-only">Nombre d'invités estimé</label>
                   <input
@@ -200,7 +217,7 @@ export function Contact() {
                   />
                 </div>
 
-                {/* 4. Téléphone */}
+                {/* 5. Téléphone */}
                 <div>
                   <label htmlFor="phone" className="sr-only">Téléphone</label>
                   <input
@@ -215,7 +232,7 @@ export function Contact() {
                   />
                 </div>
 
-                {/* 5. Email */}
+                {/* 6. Email */}
                 <div>
                   <label htmlFor="email" className="sr-only">Email</label>
                   <input
@@ -238,7 +255,7 @@ export function Contact() {
                   type="submit"
                   className={`w-full ${formState.status === 'submitting' ? 'opacity-50 pointer-events-none' : ''}`}
                 >
-                  {formState.status === 'submitting' ? 'Envoi en cours…' : 'Recevoir la brochure & Tarifs'}
+                  {formState.status === 'submitting' ? 'Envoi en cours…' : 'Vérifier les disponibilités'}
                 </Button>
               </div>
             </form>

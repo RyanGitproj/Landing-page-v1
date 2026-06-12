@@ -10,7 +10,6 @@ import { Footer } from './components/sections/Footer';
 import { HomePage } from './pages/HomePage';
 import { DomainePage } from './pages/DomainePage';
 import { MerciPage } from './pages/MerciPage';
-import { ConfirmationAcomptePage } from './pages/ConfirmationAcomptePage';
 
 /** Reset scroll on route change */
 function ScrollToTop() {
@@ -32,10 +31,12 @@ function App() {
         {/* Routes de l'application */}
         <div className="flex-grow">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            {/* Funnel Domaine des Élégances = page d'entrée directe (Meta Ads) */}
+            <Route path="/" element={<DomainePage />} />
             <Route path="/domaine-des-elegances" element={<DomainePage />} />
+            {/* Portail marque (usage futur) */}
+            <Route path="/marque" element={<HomePage />} />
             <Route path="/merci" element={<MerciPage />} />
-            <Route path="/confirmation-acompte" element={<ConfirmationAcomptePage />} />
           </Routes>
         </div>
 

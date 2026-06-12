@@ -1,156 +1,134 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
 
-// Import de TOUTES les photos réelles du domaine
 import heroImg from '../../assets/images/hero-bg.jpeg';
 import piscineImg from '../../assets/images/Piscine.jpeg';
 import grandeSalleImg from '../../assets/images/grande salle.jpeg';
 import grandeSalle2Img from '../../assets/images/grande salle 2.jpeg';
 import seminaireImg from '../../assets/images/seminaire.jpeg';
 import verandaImg from '../../assets/images/veranda.jpeg';
-import cuisineImg from '../../assets/images/cuisine.jpeg';
 import pianoImg from '../../assets/images/piano.jpeg';
 import chambre1Img from '../../assets/images/chambre 1.jpeg';
 import chambre2Img from '../../assets/images/chambre 2.jpeg';
-import chambre3Img from '../../assets/images/chambre 3.jpeg';
-import chambre4Img from '../../assets/images/chambre 4.jpeg';
 import baignoireImg from '../../assets/images/baignoire.jpeg';
 import salleEauImg from "../../assets/images/salle d'eau.jpeg";
 import salleBainImg from '../../assets/images/salle de bain.jpeg';
 import imageImg from '../../assets/images/image.jpeg';
-
-// ============================================================
-// Galerie cinématique — layout asymétrique dramatique
-// Grille masonry-like avec tailles variées, hover premium
-// ============================================================
 
 interface GalleryItem {
   id: string;
   src: string;
   alt: string;
   title: string;
-  // Tailwind classes pour le positionnement dans la grille 12 colonnes
+  caption: string;
   span: string;
 }
 
-// Layout asymétrique inspiré du cinéma — alternance de grands et petits formats
+// Galerie commerciale — photos réelles uniquement, pas de placeholder
 const GALLERY_IMAGES: GalleryItem[] = [
-  // --- Rangée 1 : héro large + portrait ---
   {
     id: 'exterieur',
     src: heroImg,
     alt: 'Vue extérieure du domaine',
-    title: 'Le Domaine',
+    title: 'Extérieur du domaine',
+    caption: 'Le Domaine des Élégances vu depuis ses espaces extérieurs',
     span: 'col-span-12 md:col-span-7 row-span-2',
+  },
+  {
+    id: 'parc',
+    src: imageImg,
+    alt: 'Parc du domaine',
+    title: 'Parc du domaine',
+    caption: 'Le parc du domaine pour vos cocktails, photos et réceptions',
+    span: 'col-span-6 md:col-span-5',
+  },
+  {
+    id: 'pool-house',
+    src: piscineImg,
+    alt: 'Pool house 250 m² avec piscine intérieure',
+    title: 'Pool house 250 m²',
+    caption: 'Pool house 250 m² avec piscine intérieure',
+    span: 'col-span-6 md:col-span-5',
+  },
+  {
+    id: 'interieurs',
+    src: grandeSalleImg,
+    alt: 'Espaces intérieurs du domaine',
+    title: 'Espaces intérieurs',
+    caption: 'Espaces intérieurs et zones de vie pour le séjour',
+    span: 'col-span-12 md:col-span-8 row-span-2',
+  },
+  {
+    id: 'couchages',
+    src: chambre1Img,
+    alt: 'Couchages sur place',
+    title: 'Couchages sur place',
+    caption: 'Espaces nuit disponibles sur place, capacité à confirmer commercialement',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'reception',
+    src: grandeSalle2Img,
+    alt: 'Ambiance réception et tables',
+    title: 'Réception & décoration',
+    caption: 'Espaces modulables pour vos réceptions privées et événements',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'ambiance-evenementielle',
+    src: seminaireImg,
+    alt: 'Ambiance événementielle professionnelle',
+    title: 'Ambiance événementielle',
+    caption: 'Configurations possibles pour événements professionnels et privés',
+    span: 'col-span-6 md:col-span-4',
+  },
+  {
+    id: 'chambre-double',
+    src: chambre2Img,
+    alt: 'Chambre double',
+    title: 'Chambre double',
+    caption: 'Chambre double pour couchages sur place',
+    span: 'col-span-6 md:col-span-4',
   },
   {
     id: 'veranda',
     src: verandaImg,
-    alt: 'Véranda lumineuse',
+    alt: 'Véranda lumineuse du domaine',
     title: 'Véranda',
-    span: 'col-span-6 md:col-span-5',
+    caption: 'Véranda lumineuse pour moments de détente et accueil',
+    span: 'col-span-6 md:col-span-4',
   },
   {
-    id: 'piano',
+    id: 'salon-piano',
     src: pianoImg,
-    alt: 'Piano à queue dans le salon',
-    title: 'Salon Piano',
-    span: 'col-span-6 md:col-span-5',
-  },
-  // --- Rangée 2 : trio moyen ---
-  {
-    id: 'grande-salle',
-    src: grandeSalleImg,
-    alt: 'Grande salle de réception',
-    title: 'Salle de Réception',
-    span: 'col-span-12 md:col-span-4',
-  },
-  {
-    id: 'seminaire',
-    src: seminaireImg,
-    alt: 'Espace séminaire professionnel',
-    title: 'Espace Séminaire',
+    alt: 'Salon avec piano',
+    title: 'Salon piano',
+    caption: 'Espace intérieur de caractère pour accueillir vos invités',
     span: 'col-span-6 md:col-span-4',
   },
-  {
-    id: 'grande-salle-2',
-    src: grandeSalle2Img,
-    alt: 'Grande salle — vue alternative',
-    title: 'Réception',
-    span: 'col-span-6 md:col-span-4',
-  },
-  // --- Rangée 3 : piscine large + cuisine ---
-  {
-    id: 'piscine',
-    src: piscineImg,
-    alt: 'Piscine intérieure chauffée',
-    title: 'Piscine Intérieure',
-    span: 'col-span-12 md:col-span-8 row-span-2',
-  },
-  {
-    id: 'cuisine',
-    src: cuisineImg,
-    alt: 'Cuisine équipée professionnelle',
-    title: 'Cuisine',
-    span: 'col-span-6 md:col-span-4',
-  },
-  {
-    id: 'image',
-    src: imageImg,
-    alt: 'Vue du domaine',
-    title: 'Ambiance',
-    span: 'col-span-6 md:col-span-4',
-  },
-  // --- Rangée 4 : les chambres ---
-  {
-    id: 'chambre-1',
-    src: chambre1Img,
-    alt: 'Chambre principale',
-    title: 'Suite Principale',
-    span: 'col-span-6 md:col-span-3',
-  },
-  {
-    id: 'chambre-2',
-    src: chambre2Img,
-    alt: 'Chambre double',
-    title: 'Chambre Double',
-    span: 'col-span-6 md:col-span-3',
-  },
-  {
-    id: 'chambre-3',
-    src: chambre3Img,
-    alt: 'Chambre avec vue jardin',
-    title: 'Chambre Jardin',
-    span: 'col-span-6 md:col-span-3',
-  },
-  {
-    id: 'chambre-4',
-    src: chambre4Img,
-    alt: 'Chambre cosy',
-    title: 'Chambre Cosy',
-    span: 'col-span-6 md:col-span-3',
-  },
-  // --- Rangée 5 : salles de bain en trio ---
   {
     id: 'baignoire',
     src: baignoireImg,
     alt: 'Baignoire de standing',
     title: 'Baignoire',
+    caption: 'Salle de bain de standing pour les séjours sur place',
     span: 'col-span-12 md:col-span-5',
   },
   {
     id: 'salle-bain',
     src: salleBainImg,
     alt: 'Salle de bain élégante',
-    title: 'Salle de Bain',
+    title: 'Salle de bain',
+    caption: 'Salle de bain élégante pour les couchages du domaine',
     span: 'col-span-6 md:col-span-4',
   },
   {
     id: 'salle-eau',
     src: salleEauImg,
     alt: "Salle d'eau moderne",
-    title: "Salle d'Eau",
+    title: "Salle d'eau",
+    caption: "Salle d'eau moderne pour les invités hébergés",
     span: 'col-span-6 md:col-span-3',
   },
 ];
@@ -164,17 +142,14 @@ export function Gallery() {
       if (e.key === 'Escape') {
         setSelectedImage(null);
       }
-      // Navigation au clavier dans la lightbox
       const currentIndex = GALLERY_IMAGES.findIndex((img) => img.id === selectedImage.id);
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
-        const next = (currentIndex + 1) % GALLERY_IMAGES.length;
-        setSelectedImage(GALLERY_IMAGES[next]);
+        setSelectedImage(GALLERY_IMAGES[(currentIndex + 1) % GALLERY_IMAGES.length]);
       }
       if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const prev = (currentIndex - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
-        setSelectedImage(GALLERY_IMAGES[prev]);
+        setSelectedImage(GALLERY_IMAGES[(currentIndex - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length]);
       }
     },
     [selectedImage]
@@ -186,11 +161,7 @@ export function Gallery() {
   }, [handleKeyDown]);
 
   useEffect(() => {
-    if (selectedImage) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = selectedImage ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -215,32 +186,29 @@ export function Gallery() {
       aria-label="Galerie photos du domaine"
     >
       <div className="max-w-[1400px] mx-auto">
-        {/* Titre */}
         <RevealWrapper animation="fade-up">
           <SectionTitle
-            tag="En images"
-            title="Le Domaine en toute transparence"
-            subtitle="Découvrez chaque espace du Domaine des Élégances à travers nos photos réelles."
+            tag="Galerie"
+            title="Découvrez le domaine en images"
+            subtitle="Extérieur, parc arboré, pool house 250 m², piscine intérieure, couchages et espaces intérieurs — 100% photos réelles du domaine."
             align="center"
             light
           />
         </RevealWrapper>
 
-        {/* Grille asymétrique cinématique */}
         <div className="grid grid-cols-12 gap-2 md:gap-3 mt-16 md:mt-24 auto-rows-[180px] md:auto-rows-[220px] lg:auto-rows-[260px]">
           {GALLERY_IMAGES.map((image, index) => (
             <RevealWrapper
               key={image.id}
               animation="fade-in"
-              delay={index * 60}
+              delay={index * 50}
               className={image.span}
             >
               <button
                 onClick={() => setSelectedImage(image)}
-                className="group relative w-full h-full overflow-hidden block focus-gold"
+                className="group relative w-full h-full overflow-hidden block focus-gold text-left"
                 aria-label={`Voir en grand : ${image.title}`}
               >
-                {/* Photo */}
                 <img
                   src={image.src}
                   alt={image.alt}
@@ -248,34 +216,16 @@ export function Gallery() {
                   loading="lazy"
                 />
 
-                {/* Overlay au hover — dégradé bas + titre */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Ligne dorée + Titre */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                  <div className="w-8 h-px bg-gold mb-2" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                  <div className="w-8 h-px bg-gold mb-3" />
                   <p className="font-display font-semibold text-white text-sm md:text-base tracking-wider drop-shadow-lg">
                     {image.title}
                   </p>
-                </div>
-
-                {/* Icône zoom subtile */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white/60">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    <line x1="11" y1="8" x2="11" y2="14" />
-                    <line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
+                  <p className="font-sans font-light text-white/65 text-xs mt-2 leading-relaxed">
+                    {image.caption}
+                  </p>
                 </div>
               </button>
             </RevealWrapper>
@@ -283,7 +233,6 @@ export function Gallery() {
         </div>
       </div>
 
-      {/* ====== Lightbox cinéma ====== */}
       {selectedImage && (
         <div
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
@@ -292,7 +241,6 @@ export function Gallery() {
           aria-modal="true"
           aria-label={`Image agrandie : ${selectedImage.title}`}
         >
-          {/* Bouton fermer */}
           <button
             onClick={() => setSelectedImage(null)}
             className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors duration-300 z-10"
@@ -304,7 +252,6 @@ export function Gallery() {
             </svg>
           </button>
 
-          {/* Flèche précédente */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -318,7 +265,6 @@ export function Gallery() {
             </svg>
           </button>
 
-          {/* Flèche suivante */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -332,7 +278,6 @@ export function Gallery() {
             </svg>
           </button>
 
-          {/* Image centrée */}
           <img
             src={selectedImage.src}
             alt={selectedImage.alt}
@@ -340,13 +285,12 @@ export function Gallery() {
             onClick={(e) => e.stopPropagation()}
           />
 
-          {/* Légende en bas */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center max-w-[80vw]">
             <p className="font-display font-semibold text-white text-lg tracking-wider mb-1">
               {selectedImage.title}
             </p>
-            <p className="font-sans font-light text-white/30 text-xs tracking-[0.2em] uppercase">
-              {selectedImage.alt}
+            <p className="font-sans font-light text-white/50 text-sm">
+              {selectedImage.caption}
             </p>
           </div>
         </div>

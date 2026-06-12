@@ -21,7 +21,7 @@ export function Footer() {
           {/* Logo — col large */}
           <div className="md:col-span-5">
             <button
-              onClick={() => scrollTo('#')}
+              onClick={() => scrollTo('#hero')}
               className="group flex flex-col items-start leading-none mb-6 focus-gold"
               aria-label="Retour en haut de page"
             >
@@ -105,7 +105,7 @@ export function Footer() {
             © 2026 Célébrations Voyages France — Tous droits réservés
           </p>
           <button
-            onClick={() => scrollTo('#')}
+            onClick={() => scrollTo('#hero')}
             className="font-sans text-white/15 text-[10px] tracking-[0.15em] uppercase hover:text-gold/40 transition-colors duration-300 focus-gold"
           >
             Retour en haut ↑

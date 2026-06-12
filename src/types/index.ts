@@ -10,8 +10,9 @@ export interface NavLink {
   href: string;
 }
 
-/** Données du formulaire court de conversion */
+/** Données du formulaire court de conversion (5 champs — checklist) */
 export interface ContactFormData {
+  name: string;
   eventType: string;
   eventDate: string;
   guests: string;

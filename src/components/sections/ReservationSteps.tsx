@@ -27,7 +27,7 @@ export function ReservationSteps() {
   };
 
   return (
-    <section id="reservation" className="bg-cream py-24 md:py-32 px-6 lg:px-12">
+    <section id="reservation" className="bg-cream pt-24 pb-12 md:pt-32 md:pb-16 px-6 lg:px-12">
       <div className="max-w-[1100px] mx-auto">
         <RevealWrapper animation="fade-up">
           <SectionTitle
@@ -47,7 +47,7 @@ export function ReservationSteps() {
           {STEPS.map((step, index) => (
             <RevealWrapper key={step} animation="fade-up" delay={index * 80}>
               <div className="h-full border border-stone bg-white px-6 py-7 rounded-sm">
-                <p className="font-headline text-gold text-xs uppercase tracking-[0.24em] mb-5">
+                <p className="font-headline font-bold text-gold-dark text-xs uppercase tracking-[0.24em] mb-5">
                   Étape {String(index + 1).padStart(2, '0')}
                 </p>
                 <p className="font-sans font-light text-warm leading-relaxed">
@@ -58,7 +58,7 @@ export function ReservationSteps() {
           ))}
         </div>
 
-        <div id="brochure-whatsapp" className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+        <div id="brochure-whatsapp" className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <Button variant="primary" size="lg" onClick={() => scrollTo('#disponibilites')}>
             Vérifier les disponibilités
           </Button>
@@ -68,7 +68,7 @@ export function ReservationSteps() {
         </div>
 
         {!brochureUrl && (
-          <p className="font-sans text-xs text-warm/60 text-center mt-5">
+          <p className="font-sans text-xs text-warm/60 text-center mt-4">
             Lien WhatsApp / WATI réel à renseigner dans la constante dédiée avant mise en production.
           </p>
         )}

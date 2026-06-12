@@ -25,12 +25,13 @@ export function SectionTitle({
   const alignClass = align === 'center' ? 'text-center' : 'text-left';
   const titleColor = light ? 'text-white' : 'text-charcoal';
   const subtitleColor = light ? 'text-white/60' : 'text-warm';
+  const tagColor = light ? 'text-gold' : 'text-gold-dark';
 
   return (
     <div className={`${alignClass} mb-12 md:mb-20 ${className}`}>
       {/* Numéro de scène / tag */}
       {tag && (
-        <p className="scene-number mb-6">
+        <p className={`scene-number mb-6 text-[0.7rem] ${tagColor}`}>
           {tag}
         </p>
       )}

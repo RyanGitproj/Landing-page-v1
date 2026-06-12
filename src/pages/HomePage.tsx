@@ -75,7 +75,7 @@ export function HomePage() {
                 <p className="font-sans font-light text-warm text-sm mb-4">
                   Domaine premium avec piscine intérieure, parc arboré du domaine et espaces modulables pour vos réceptions.
                 </p>
-                <span className="inline-flex items-center gap-2 font-headline uppercase tracking-widest text-[10px] text-gold group-hover:text-gold-dark transition-colors">
+                <span className="inline-flex items-center gap-2 font-headline uppercase tracking-widest text-[10px] text-gold-dark group-hover:text-gold transition-colors">
                   Visiter ce domaine <span aria-hidden="true">→</span>
                 </span>
               </Link>

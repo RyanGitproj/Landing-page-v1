@@ -1,10 +1,12 @@
+import type { ReactNode } from 'react';
+
 // ============================================================
 // SectionTitle cinématique — épuré, ligne dorée animée,
 // numéro de scène, typographie contrastée
 // ============================================================
 
 interface SectionTitleProps {
-  title: string;
+  title: ReactNode;
   subtitle?: string;
   align?: 'left' | 'center';
   light?: boolean;
@@ -35,7 +37,7 @@ export function SectionTitle({
 
       {/* Titre principal — display serif, taille cinématique */}
       <h2
-        className={`font-display font-bold text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight ${titleColor}`}
+        className={`font-display font-bold text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-balance ${titleColor}`}
       >
         {title}
       </h2>

@@ -57,8 +57,14 @@ export function Navbar() {
             {/* Logo — dynamique selon la page */}
             <Link
               to="/"
+              onClick={(e) => {
+                if (isDomainePage) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className="group flex flex-col items-start leading-none focus-gold"
-              aria-label="Retour à l'accueil"
+              aria-label="Retour en haut de page"
             >
               <span className="font-headline font-bold text-sm tracking-[0.3em] uppercase text-white transition-colors duration-300 group-hover:text-gold">
                 Lieu de Célébration

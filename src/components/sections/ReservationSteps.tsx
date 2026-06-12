@@ -32,7 +32,12 @@ export function ReservationSteps() {
         <RevealWrapper animation="fade-up">
           <SectionTitle
             tag="Parcours"
-            title="Comment réserver le Domaine des Élégances ?"
+            title={(
+              <>
+                Comment réserver <span className="whitespace-nowrap">le Domaine</span>{' '}
+                <span className="whitespace-nowrap">des Élégances&nbsp;?</span>
+              </>
+            )}
             subtitle="Le parcours est pensé pour qualifier votre demande, confirmer les options utiles et sécuriser l'acompte uniquement après validation commerciale."
             align="center"
           />

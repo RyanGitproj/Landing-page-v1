@@ -45,7 +45,7 @@ export function Hero() {
         <div className="max-w-2xl text-center md:text-left">
           <RevealWrapper animation="fade-up" delay={200}>
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-[1.1] mb-4 drop-shadow-lg">
-              Privatisez le Domaine des Élégances
+              Privatisez <span className="text-gold">le Domaine des&nbsp;Élégances</span>
             </h1>
             <p className="font-sans font-light text-white/90 text-lg md:text-xl leading-relaxed mb-8 max-w-xl drop-shadow-md mx-auto md:mx-0">
               Un domaine privé avec parc, pool house de 250 m², piscine intérieure, sauna, couchages sur place et espaces modulables pour vos événements familiaux, professionnels et privés.

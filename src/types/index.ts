@@ -18,6 +18,7 @@ export interface ContactFormData {
   guests: string;
   phone: string;
   email: string;
+  botField?: string;
 }
 
 /** État de soumission du formulaire */

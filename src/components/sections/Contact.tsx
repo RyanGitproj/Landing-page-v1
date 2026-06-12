@@ -5,6 +5,7 @@ import { RevealWrapper } from '../ui/RevealWrapper';
 import { Button } from '../ui/Button';
 import { EVENT_TYPE_OPTIONS } from '../../constants';
 import type { ContactFormData, ContactFormState } from '../../types';
+import { formService } from '../../services/formService';
 
 // ============================================================
 // Formulaire Court de Conversion — `#disponibilites`
@@ -21,6 +22,7 @@ const INITIAL_FORM_DATA: ContactFormData = {
   guests: '',
   phone: '',
   email: '',
+  botField: '',
 };
 
 export function Contact() {
@@ -35,7 +37,7 @@ export function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name.trim() || !formData.eventType || !formData.phone.trim() || !formData.email.trim()) {
@@ -55,11 +57,35 @@ export function Contact() {
     }
 
     setFormState({ status: 'submitting' });
+    
+    // ANTI-SPAM (Honeypot) : Si un robot a rempli ce champ caché, on simule un succès.
+    if (formData.botField) {
+      setTimeout(() => {
+        setFormData(INITIAL_FORM_DATA);
+        setFormState({ status: 'success' });
+      }, 500);
+      return;
+    }
+
+    // Appel au service Supabase
+    const result = await formService.submitLead(formData);
+
+    if (!result.success) {
+      setFormState({
+        status: 'error',
+        error: `Erreur d'envoi : ${result.error || "Une erreur inconnue est survenue."}`,
+      });
+      return;
+    }
+
+    // Succès
+    setFormData(INITIAL_FORM_DATA);
+    setFormState({ status: 'success' });
+    
+    // Redirection vers la page merci après un court délai
     setTimeout(() => {
-      setFormData(INITIAL_FORM_DATA);
-      setFormState({ status: 'idle' });
       navigate('/merci');
-    }, 1500);
+    }, 1000);
   };
 
   const inputClasses =
@@ -154,6 +180,20 @@ export function Contact() {
             )}
 
             <form onSubmit={handleSubmit} noValidate>
+              {/* CHAMP ANTI-SPAM INVISIBLE POUR LES HUMAINS */}
+              <div className="absolute left-[-9999px] top-[-9999px]" aria-hidden="true">
+                <label htmlFor="botField">Ne pas remplir</label>
+                <input
+                  id="botField"
+                  type="text"
+                  name="botField"
+                  value={formData.botField || ''}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="space-y-4">
                 {/* 1. Nom / prénom */}
                 <div>

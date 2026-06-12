@@ -12,7 +12,7 @@ export const formService = {
   async submitLead(data: ContactFormData, source?: string) {
     try {
       const { error } = await supabase
-        .from('domaine_elegance')
+        .from('domaine_elegance_form')
         .insert([{
           name: data.name,
           email: data.email,
@@ -32,6 +32,31 @@ export const formService = {
       return { success: true }
     } catch (err: any) {
       console.error("Erreur dans formService:", err)
+      return { success: false, error: err.message || "Une erreur est survenue" }
+    }
+  },
+
+  /**
+   * Envoie les données de demande de brochure WhatsApp à Supabase
+   */
+  async submitBrochureRequest(data: { name: string; whatsapp_number: string; botField?: string }) {
+    try {
+      const { error } = await supabase
+        .from('domaine_elegance_brochure')
+        .insert([{
+          name: data.name,
+          whatsapp_number: data.whatsapp_number,
+          // id, created_at, status sont gérés automatiquement par la DB
+        }])
+
+      if (error) {
+        console.error("Erreur lors de l'insertion Supabase (brochure):", error)
+        throw new Error(error.message)
+      }
+
+      return { success: true }
+    } catch (err: any) {
+      console.error("Erreur dans formService (brochure):", err)
       return { success: false, error: err.message || "Une erreur est survenue" }
     }
   }

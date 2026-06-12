@@ -1,5 +1,5 @@
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
-import { getWhatsAppBrochureUrl } from '../../constants';
+import { usePopup } from '../../context/PopupContext';
 import { Button } from '../ui/Button';
 
 // ============================================================
@@ -8,15 +8,10 @@ import { Button } from '../ui/Button';
 
 export function ConversionFinale() {
   const { scrollTo } = useSmoothScroll();
-  const brochureUrl = getWhatsAppBrochureUrl();
+  const { openPopup } = usePopup();
 
   const handleBrochureClick = () => {
-    if (brochureUrl) {
-      window.open(brochureUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-
-    scrollTo('#brochure-whatsapp');
+    openPopup();
   };
 
   return (

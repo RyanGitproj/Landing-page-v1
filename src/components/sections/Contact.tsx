@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
 import { Button } from '../ui/Button';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 import { EVENT_TYPE_OPTIONS } from '../../constants';
 import type { ContactFormData, ContactFormState } from '../../types';
 import { formService } from '../../services/formService';
@@ -35,6 +37,10 @@ export function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePhoneChange = (value?: string) => {
+    setFormData((prev) => ({ ...prev, phone: value || '' }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -89,7 +95,7 @@ export function Contact() {
   };
 
   const inputClasses =
-    'w-full bg-transparent border-0 border-b border-stone/40 px-0 py-4 text-navy font-sans font-light text-sm placeholder:text-navy/60 outline-none transition-all duration-300 focus:border-gold rounded-none';
+    'w-full bg-transparent border-0 border-b border-stone/40 px-0 py-4 text-navy font-sans font-light text-sm placeholder:text-navy/60 outline-none transition-all duration-300 focus:border-gold focus-within:border-gold rounded-none';
 
   return (
     <section
@@ -257,18 +263,21 @@ export function Contact() {
                   />
                 </div>
 
-                {/* 5. Téléphone */}
+                {/* 5. Téléphone (International) */}
                 <div>
                   <label htmlFor="phone" className="sr-only">Téléphone</label>
-                  <input
+                  <PhoneInput
                     id="phone"
-                    type="tel"
                     name="phone"
+                    defaultCountry="FR"
                     value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Numéro de téléphone *"
+                    onChange={handlePhoneChange}
+                    placeholder="Numéro de téléphone (ex: 06 12 34 56 78) *"
                     required
                     className={inputClasses}
+                    numberInputProps={{
+                      className: 'bg-transparent border-none outline-none w-full p-0 text-navy placeholder:text-navy/60 font-sans font-light focus:ring-0',
+                    }}
                   />
                 </div>
 

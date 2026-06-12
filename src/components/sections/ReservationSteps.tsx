@@ -1,5 +1,5 @@
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
-import { getWhatsAppBrochureUrl } from '../../constants';
+import { usePopup } from '../../context/PopupContext';
 import { Button } from '../ui/Button';
 import { SectionTitle } from '../ui/SectionTitle';
 import { RevealWrapper } from '../ui/RevealWrapper';
@@ -15,15 +15,10 @@ const STEPS = [
 
 export function ReservationSteps() {
   const { scrollTo } = useSmoothScroll();
-  const brochureUrl = getWhatsAppBrochureUrl();
+  const { openPopup } = usePopup();
 
   const handleBrochureClick = () => {
-    if (brochureUrl) {
-      window.open(brochureUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-
-    scrollTo('#brochure-whatsapp');
+    openPopup();
   };
 
   return (
@@ -67,11 +62,7 @@ export function ReservationSteps() {
           </Button>
         </div>
 
-        {!brochureUrl && (
-          <p className="font-sans text-xs text-warm/60 text-center mt-4">
-            Lien WhatsApp / WATI réel à renseigner dans la constante dédiée avant mise en production.
-          </p>
-        )}
+
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      domaine_elegance: {
+      domaine_elegance_form: {
         Row: {
           id: string
           created_at: string
@@ -44,6 +44,30 @@ export interface Database {
           event_date?: string | null
           guests?: string | null
           source?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      domaine_elegance_brochure: {
+        Row: {
+          id: string
+          created_at: string
+          name: string
+          whatsapp_number: string
+          status: string
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          name: string
+          whatsapp_number: string
+          status?: string
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          name?: string
+          whatsapp_number?: string
           status?: string
         }
         Relationships: []

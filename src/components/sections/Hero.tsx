@@ -1,7 +1,8 @@
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import { Button } from '../ui/Button';
 import { RevealWrapper } from '../ui/RevealWrapper';
-import { getWhatsAppBrochureUrl, NICHES } from '../../constants';
+import { NICHES } from '../../constants';
+import { usePopup } from '../../context/PopupContext';
 import heroBg from '../../assets/images/domaine-hero-nuit.jpeg';
 
 // ============================================================
@@ -11,15 +12,10 @@ import heroBg from '../../assets/images/domaine-hero-nuit.jpeg';
 
 export function Hero() {
   const { scrollTo } = useSmoothScroll();
-  const brochureUrl = getWhatsAppBrochureUrl();
+  const { openPopup } = usePopup();
 
   const handleBrochureClick = () => {
-    if (brochureUrl) {
-      window.open(brochureUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-
-    scrollTo('#brochure-whatsapp');
+    openPopup();
   };
 
   return (

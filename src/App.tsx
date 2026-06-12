@@ -20,30 +20,36 @@ function ScrollToTop() {
   return null;
 }
 
+import { PopupProvider } from './context/PopupContext';
+import { WhatsAppPopup } from './components/ui/WhatsAppPopup';
+
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        {/* Header discret, context-aware via les hooks internes */}
-        <Navbar />
+    <PopupProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col">
+          {/* Header discret, context-aware via les hooks internes */}
+          <Navbar />
 
-        {/* Routes de l'application */}
-        <div className="flex-grow">
-          <Routes>
-            {/* Funnel Domaine des Élégances = page d'entrée directe (Meta Ads) */}
-            <Route path="/" element={<DomainePage />} />
-            <Route path="/domaine-des-elegances" element={<DomainePage />} />
-            {/* Portail marque (usage futur) */}
-            <Route path="/marque" element={<HomePage />} />
-            <Route path="/merci" element={<MerciPage />} />
-          </Routes>
+          {/* Routes de l'application */}
+          <div className="flex-grow">
+            <Routes>
+              {/* Funnel Domaine des Élégances = page d'entrée directe (Meta Ads) */}
+              <Route path="/" element={<DomainePage />} />
+              <Route path="/domaine-des-elegances" element={<DomainePage />} />
+              {/* Portail marque (usage futur) */}
+              <Route path="/marque" element={<HomePage />} />
+              <Route path="/merci" element={<MerciPage />} />
+            </Routes>
+          </div>
+
+          {/* Pied de page commun */}
+          <Footer />
         </div>
-
-        {/* Pied de page commun */}
-        <Footer />
-      </div>
-    </Router>
+        <WhatsAppPopup />
+      </Router>
+    </PopupProvider>
   );
 }
 
